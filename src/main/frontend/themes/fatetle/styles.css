@@ -1,6 +1,6 @@
 @import "./theme-editor.css";
 @import url('./main-layout.css');
-@import url('@fontsource/libre-baskerville/index.css');    html, spreadsheet-view-export, grid-with-filters-view-export {
+@import '@fontsource/libre-baskerville/index.css';    html, spreadsheet-view-export, grid-with-filters-view-export {
       --lumo-shade-5pct: hsla(214, 6%, 96%, 0.05);
       --lumo-shade-10pct: hsla(214, 6%, 96%, 0.1);
       --lumo-shade-20pct: hsla(214, 6%, 96%, 0.2);
