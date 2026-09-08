@@ -32,10 +32,6 @@
       --lumo-border-radius-l: var(--lumo-size-m);
       --lumo-font-family: Libre Baskerville;
 
-      html {
-            --lumo-font-family: "Libre Baskerville";
-      }
-
       @media (max-width: 1000px) {
             .game-page {
                   flex-direction: column;

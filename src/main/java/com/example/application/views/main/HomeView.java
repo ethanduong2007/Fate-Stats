@@ -38,7 +38,7 @@ public class HomeView extends VerticalLayout {
         getStyle().set("background-image", "url('/images/background/background1.png')").set("background-size", "cover").set("background-position", "center-bottom").set("background-repeat", "no-repeat");
 
         // Display title page
-        title = new Span("Fatetle");
+        title = new Span("Fate/Stats");
         title.getStyle().set("font-size", "100px").set("border", "1px solid white").set("border-radius", "10px").set("padding", "10px");
 
         // Display play button
@@ -49,7 +49,7 @@ public class HomeView extends VerticalLayout {
         });
 
         play.getStyle().set("font-size", "50px").set("background-color", "#1a1a1a");
-        play.setWidth("300px");
+        play.setWidth("350px");
         play.setHeight("90px");
 
         // Display how to play button
@@ -60,7 +60,7 @@ public class HomeView extends VerticalLayout {
         });
 
         howToPlay.getStyle().set("font-size", "50px").set("background-color", "#1a1a1a");
-        howToPlay.setWidth("300px");
+        howToPlay.setWidth("350px");
         howToPlay.setHeight("90px");
 
 
@@ -68,7 +68,7 @@ public class HomeView extends VerticalLayout {
         howToPlayScreen = new Dialog();
 
         howToPlayScreen.getElement().getStyle().set("--vaadin-dialog-overlay-width", "100%");
-        howToPlayScreen.setWidth("750px");
+        howToPlayScreen.setWidth("800px");
         howToPlayScreen.setCloseOnEsc(false);
         howToPlayScreen.setCloseOnOutsideClick(false);
         howToPlayScreen.addClassName("game-dialog");
@@ -126,14 +126,14 @@ public class HomeView extends VerticalLayout {
         });
 
         credits.getStyle().set("font-size", "50px").set("background-color", "#1a1a1a");
-        credits.setWidth("300px");
+        credits.setWidth("350px");
         credits.setHeight("90px");
 
         // Display credits screen
         creditsScreen = new Dialog();
 
         creditsScreen.getElement().getStyle().set("--vaadin-dialog-overlay-width", "100%");
-        creditsScreen.setWidth("750px");
+        creditsScreen.setWidth("800px");
         creditsScreen.setCloseOnEsc(false);
         creditsScreen.setCloseOnOutsideClick(false);
         creditsScreen.addClassName("game-dialog");
