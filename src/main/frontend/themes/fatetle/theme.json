@@ -1,8 +1,9 @@
 {
-  "assets": {
-    "@fontsource/libre-baskerville": {
-      "*.css": "@fontsource/libre-baskerville",
-      "files/*": "@fontsource/libre-baskerville/files"
+  "assets" : {
+    "@fontsource/libre-baskerville" : {
+      "*.css" : "@fontsource/libre-baskerville",
+      "files/*" : "@fontsource/libre-baskerville/files"
     }
-  }
+  },
+  "lumoImports" : [ "typography", "color", "spacing", "badge", "utility" ]
 }

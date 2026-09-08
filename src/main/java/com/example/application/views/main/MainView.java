@@ -213,7 +213,7 @@ public class MainView extends HorizontalLayout {
      */
     private Span createParameter(String parameter) {
         Span span = new Span(parameter + ": ?");
-        span.getStyle().set("font-size", "15px").set("padding-left", "10px");
+        span.getStyle().set("font-size", "20px").set("padding-left", "10px");
         span.setWidth("90px");
         return span;
     }
@@ -226,7 +226,7 @@ public class MainView extends HorizontalLayout {
      */
     private Span createParameterSummary(String parameter) {
         Span span = new Span(parameter + ": ?");
-        span.getStyle().set("font-size", "15px").set("text-align", "center");
+        span.getStyle().set("font-size", "20px").set("text-align", "center");
         span.setWidth("120px");
         return span;
     }
@@ -566,7 +566,7 @@ public class MainView extends HorizontalLayout {
         endScreen = new Dialog();
 
         endScreen.getElement().getStyle().set("--vaadin-dialog-overlay-width", "100%");
-        endScreen.setWidth("800px");
+        endScreen.setWidth("750px");
         endScreen.setCloseOnEsc(false);
         endScreen.setCloseOnOutsideClick(false);
         endScreen.addClassName("game-dialog");
