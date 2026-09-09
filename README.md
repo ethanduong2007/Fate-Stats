@@ -19,8 +19,7 @@ Fate/Stats is a Java-based web application inspired by the Fate franchise. Playe
 - IntelliJ IDEA
 
 # How to Run
-
-# Prerequisites
+Prerequisites
 - Java 25 or later
 - Maven
 
