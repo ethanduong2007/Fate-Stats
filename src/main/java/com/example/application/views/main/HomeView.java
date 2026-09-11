@@ -28,8 +28,8 @@ public class HomeView extends VerticalLayout {
 
     private Span createScoringSpan(String score) {
         Span span = new Span(score + "+++: +200\n" + score + "++: +150\n" + score + "+: +100\n" + score + ": +50");
-        span.getStyle().set("font-size", "20px").set("text-align", "center").set("white-space", "pre-line");
-        span.setWidth("175px");
+        span.getStyle().set("font-size", "15px").set("text-align", "center").set("white-space", "pre-line"); // Original size is 20px
+        span.setWidth("140px"); // Original size is 175px
         return span;
     }
 
@@ -48,7 +48,7 @@ public class HomeView extends VerticalLayout {
             UI.getCurrent().navigate("game");
         });
 
-        play.getStyle().set("font-size", "50px").set("background-color", "#1a1a1a");
+        play.getStyle().set("font-size", "30px").set("background-color", "#1a1a1a"); // Original size is 50px
         play.setWidth("300px");
         play.setHeight("90px");
 
@@ -59,7 +59,7 @@ public class HomeView extends VerticalLayout {
             howToPlayScreen.open();
         });
 
-        howToPlay.getStyle().set("font-size", "50px").set("background-color", "#1a1a1a");
+        howToPlay.getStyle().set("font-size", "30px").set("background-color", "#1a1a1a"); // Original size is 50px
         howToPlay.setWidth("300px");
         howToPlay.setHeight("90px");
 
@@ -86,7 +86,8 @@ public class HomeView extends VerticalLayout {
         scoringE = createScoringSpan("E");
 
         scoringEX = new Span("EX: +0.5x multiplier\n" + "?: 0");
-        scoringEX.getStyle().set("font-size", "20px").set("text-align", "center").set("white-space", "pre-line").set("display", "flex").set("align-items", "center");
+        scoringEX.getStyle().set("font-size", "15px").set("text-align", "center").set("white-space", "pre-line").set("display", "flex").set("align-items", "center"); // Original size is 20px
+        scoringEX.setWidth("140px"); // Original size is 175px
 
         // Display close button for how to play screen
         Button close1 = new Button("Close");
@@ -125,7 +126,7 @@ public class HomeView extends VerticalLayout {
             creditsScreen.open();
         });
 
-        credits.getStyle().set("font-size", "50px").set("background-color", "#1a1a1a");
+        credits.getStyle().set("font-size", "30px").set("background-color", "#1a1a1a"); // Original size is 50px
         credits.setWidth("300px");
         credits.setHeight("90px");
 

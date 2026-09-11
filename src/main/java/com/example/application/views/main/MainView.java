@@ -213,7 +213,7 @@ public class MainView extends HorizontalLayout {
      */
     private Span createParameter(String parameter) {
         Span span = new Span(parameter + ": ?");
-        span.getStyle().set("font-size", "20px").set("padding-left", "10px");
+        span.getStyle().set("font-size", "15px").set("padding-left", "10px"); // Original size is 20px
         span.setWidth("90px");
         return span;
     }
@@ -226,7 +226,7 @@ public class MainView extends HorizontalLayout {
      */
     private Span createParameterSummary(String parameter) {
         Span span = new Span(parameter + ": ?");
-        span.getStyle().set("font-size", "20px").set("text-align", "center");
+        span.getStyle().set("font-size", "15px").set("text-align", "center"); // Original size is 20px
         span.setWidth("120px");
         return span;
     }
