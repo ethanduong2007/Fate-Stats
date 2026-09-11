@@ -425,7 +425,7 @@ public class MainView extends HorizontalLayout {
 
         // Display servant
         name = new Span(servant.getName());
-        name.getStyle().set("font-size", "25px");
+        name.getStyle().set("font-size", "20px"); // Original size is 25px
 
         shuffling = new Span("Click to stop");
         shuffling.getStyle().set("font-size", "15px").set("opacity", "0.5");
@@ -473,10 +473,10 @@ public class MainView extends HorizontalLayout {
 
         // Display score
         scoreDisplay = new Span("Score " + scoreLogic.getScore());
-        scoreDisplay.getStyle().set("font-size", "20px").set("text-align", "center");
+        scoreDisplay.getStyle().set("font-size", "15px").set("text-align", "center"); // Original size is 20px
 
         multiplierDisplay = new Span("Multiplier " + scoreLogic.getMultiplier() + "x");
-        multiplierDisplay.getStyle().set("font-size", "20px").set("text-align", "center");
+        multiplierDisplay.getStyle().set("font-size", "15px").set("text-align", "center"); // Original size is 20px
 
         // Display parameter summary
         HorizontalLayout parameterDisplay1 = new HorizontalLayout(strSummary, aglSummary, lukSummary);

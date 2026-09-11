@@ -48,7 +48,7 @@ public class HomeView extends VerticalLayout {
             UI.getCurrent().navigate("game");
         });
 
-        play.getStyle().set("font-size", "30px").set("background-color", "#1a1a1a"); // Original size is 50px
+        play.getStyle().set("font-size", "35px").set("background-color", "#1a1a1a"); // Original size is 50px
         play.setWidth("300px");
         play.setHeight("90px");
 
@@ -59,7 +59,7 @@ public class HomeView extends VerticalLayout {
             howToPlayScreen.open();
         });
 
-        howToPlay.getStyle().set("font-size", "30px").set("background-color", "#1a1a1a"); // Original size is 50px
+        howToPlay.getStyle().set("font-size", "35px").set("background-color", "#1a1a1a"); // Original size is 50px
         howToPlay.setWidth("300px");
         howToPlay.setHeight("90px");
 
@@ -126,7 +126,7 @@ public class HomeView extends VerticalLayout {
             creditsScreen.open();
         });
 
-        credits.getStyle().set("font-size", "30px").set("background-color", "#1a1a1a"); // Original size is 50px
+        credits.getStyle().set("font-size", "35px").set("background-color", "#1a1a1a"); // Original size is 50px
         credits.setWidth("300px");
         credits.setHeight("90px");
 
