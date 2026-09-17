@@ -478,6 +478,12 @@ public class MainView extends HorizontalLayout {
 
                        number = new Random();
 
+                       System.out.println(
+                               "Trying: " + servant.getImage() +
+                                       " | ID: " + getServantID(servant.getImage()) +
+                                       " | Used: " + usedServants
+                       );
+
                        while(usedServants.contains(getServantID(servant.getImage()))) {
                            servant = servants.get(number.nextInt(servants.size()));
                        }
