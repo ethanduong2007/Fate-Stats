@@ -487,7 +487,6 @@ public class MainView extends HorizontalLayout {
 
                        shuffling.setText("Click to shuffle");
                        usedServants.add(getServantID(servant.getImage()));
-                       System.out.println(usedServants);
                        servantCount++;
                        isShuffling = !isShuffling;
                        parameterClicked = !parameterClicked;
