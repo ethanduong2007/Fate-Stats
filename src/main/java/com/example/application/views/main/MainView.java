@@ -478,24 +478,12 @@ public class MainView extends HorizontalLayout {
 
                        number = new Random();
 
-                       System.out.println(
-                               "Trying: " + servant.getImage() +
-                                       " | ID: " + getServantID(servant.getImage()) +
-                                       " | Used: " + usedServants
-                       );
-
-                       System.out.println("SELECTED: " + servant.getImage());
-
                        while(usedServants.contains(getServantID(servant.getImage()))) {
                            servant = servants.get(number.nextInt(servants.size()));
                        }
 
-                       System.out.println("AFTER RANDOM PICK: " + servant.getImage());
-
                        name.setText(servant.getName());
                        servantImage.setSrc("images/servants/" + servant.getImage());
-
-                       System.out.println("AFTER DISPLAY: " + servant.getImage());
 
                        shuffling.setText("Click to shuffle");
                        usedServants.add(getServantID(servant.getImage()));
