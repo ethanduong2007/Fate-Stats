@@ -1,6 +1,7 @@
 Mash Kyrielight, C, D, C, A, B, B+++, 1.png
 Mash Kyrielight, C, D, C, A, B, B+++, 1.1.png
 Mash Kyrielight, C, D, C, A, B, B+++, 1.2.png
+Mash Kyrielight, C, D, C, A, B, B+++, 1.3.png
 Altria Pendragon, B, B, A+, B, A, A++, 2.png
 Altria Pendragon (Alter), A, D, C, A, A++, A++, 3.png
 Altria Pendragon (Alter), A, D, C, A, A++, A++, 3.1.png
@@ -100,3 +101,27 @@ Charles Babbage, B++, D++, E, B++, A, A+, 80.png
 Henry Jekyll & Hyde, C+, A+, C, E, E, C, 81.png
 Frankenstein, C, D, B, B, D, C, 82.png
 Solomon (Lore Grand Caster), E, B, A++, E, A++, A++, 83.png
+Arjuna, A, B, A++, B, B, EX, 84.png
+Arjuna, A, B, A++, B, B, EX, 84.1.png
+Karna, B, A, D, C, B, EX, 85.png
+Karna, B, A, D, C, B, EX, 85.1.png
+Karna, B, A, D, C, B, EX, 85.2.png
+Mysterious Heroine X, B, A+, D, C, B, A++, 86.png
+Fionn mac Cumhaill, B+, A+, C, B, C, B+, 87.png
+Brynhild, B+, A, E, A, C, A, 88.png
+Beowulf, A, C, A, A, D, A, 89.png
+Nero Claudius (Bride), B, A, A, C, E, B+, 90.png
+Ryougi Shiki (Saber), E, C, A, A, B, B+, 91.png
+Ryougi Shiki (Assassin), E, A+, A+, D, C, EX, 92.png
+Amakusa Shirou, C, B, B, C, A, D, 93.png
+Amakusa Shirou, C, B, B, C, A, D, 93.1.png
+Astolfo, D, B, A+, D, C, C, 94.png
+Gilgamesh (Child), C, C, A, C, C, EX, 95.png
+Edmond Dantès, B, C, ?, A+, B, A, 96.png
+Edmond Dantès, B, C, ?, A+, B, A, 96.1.png
+Florence Nightingale, B+, B+, A+, A+, D+, D, 97.png
+Cú Chulainn (Alter), A, A+, D, B+, C, A, 98.png
+Queen Medb, E, B, EX, E, C, A+, 99.png
+Queen Medb, E, B, EX, E, C, A+, 99.1.png
+Queen Medb, E, B, EX, E, C, A+, 99.2.png
+Helena Blavatsky, E, D, A, E, A, A, 100.png

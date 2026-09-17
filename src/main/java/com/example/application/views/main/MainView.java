@@ -497,6 +497,8 @@ public class MainView extends HorizontalLayout {
                if(parameterClicked) {
                    // Stop shuffling
                    if(isShuffling) {
+                       UI.getCurrent().setPollInterval(-1);
+
                        while(usedServants.contains(getServantID(servant.getImage()))) {
                            servant = getData("servants.txt");
                        }
@@ -504,7 +506,6 @@ public class MainView extends HorizontalLayout {
                        name.setText(servant.getName());
                        servantImage.setSrc("images/servants/" + servant.getImage());
 
-                       UI.getCurrent().setPollInterval(-1);
                        shuffling.setText("Click to shuffle");
                        usedServants.add(getServantID(servant.getImage()));
                        servantCount++;
