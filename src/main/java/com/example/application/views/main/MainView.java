@@ -484,6 +484,8 @@ public class MainView extends HorizontalLayout {
                                        " | Used: " + usedServants
                        );
 
+                       System.out.println("SELECTED: " + servant.getImage());
+
                        while(usedServants.contains(getServantID(servant.getImage()))) {
                            servant = servants.get(number.nextInt(servants.size()));
                        }
