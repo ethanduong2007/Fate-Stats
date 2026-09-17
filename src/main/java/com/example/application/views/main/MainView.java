@@ -12,6 +12,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.UI;
+import java.util.ArrayList;
 import com.vaadin.flow.router.Menu;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -44,6 +45,8 @@ public class MainView extends HorizontalLayout {
 
     private boolean parameterClicked;
 
+    private Random number;
+    private ArrayList<Parameter> servants;
     private int servantCount = 0;
     private Set<String> usedServants = new HashSet<>();
 
@@ -58,61 +61,32 @@ public class MainView extends HorizontalLayout {
     private Dialog endScreen;
 
     /**
-     * Get all servant data from a file
+     * Load all the servants at the beginning of the program
      *
      * @param fileName is the name of the file
-     * @throws Exception
      */
-    private Parameter getData(String fileName) throws Exception {
-
-        // Initialize variables
+    private void servantLoad(String fileName) {
+        servants = new ArrayList<>();
         Scanner scanner = new Scanner(getClass().getClassLoader().getResourceAsStream(fileName));
-        int rows = 0;
-        int currentLine = 0;
-
-        // Count number of lines
-        while (scanner.hasNextLine()) {
-            scanner.nextLine();
-            rows++;
-        }
-
-        // Reopen scanner
-        scanner.close();
-        scanner = new Scanner(getClass().getClassLoader().getResourceAsStream(fileName));
-
-        // Generate a random number
-        Random number = new Random();
-        int randomNumber = number.nextInt(rows);
-
-        // Search for random servant
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
 
-            // Check for random servant
-            if (currentLine == randomNumber) {
-                String[] data = line.trim().split(",");
+            String[] data = line.trim().split(",");
 
-                // Extract data
-                String name = data[0].trim();
-                String str = data[1].trim();
-                String agl = data[2].trim();
-                String luk = data[3].trim();
-                String end = data[4].trim();
-                String mp = data[5].trim();
-                String np = data[6].trim();
-                String image = data[7].trim();
+            // Extract data
+            String name = data[0].trim();
+            String str = data[1].trim();
+            String agl = data[2].trim();
+            String luk = data[3].trim();
+            String end = data[4].trim();
+            String mp = data[5].trim();
+            String np = data[6].trim();
+            String image = data[7].trim();
 
-                // Create servant object
-                scanner.close();
-                return new Parameter(name, str, agl, luk, end, mp, np, image);
-            }
-
-            // Increase line count;
-            currentLine++;
+            servants.add(new Parameter(name, str, agl, luk, end, mp, np, image));
         }
 
         scanner.close();
-        return null;
     }
 
     /** Creates a random servant
@@ -121,7 +95,8 @@ public class MainView extends HorizontalLayout {
      */
     public void getRandomServant() throws Exception {
         // Display servant data
-        servant = getData("servants.txt");
+        number = new Random();
+        servant = servants.get(number.nextInt(servants.size()));
 
         name.setText(servant.getName());
         servantImage.setSrc("images/servants/" + servant.getImage());
@@ -409,8 +384,10 @@ public class MainView extends HorizontalLayout {
         // Change background
         getStyle().set("background-image", "url('/images/background/background1.png')").set("background-size", "cover").set("background-position", "center-bottom").set("background-repeat", "no-repeat");
 
-        // Extract data
-        servant = getData("servants.txt");
+        // Load servants
+        servantLoad("servants.txt");
+        number = new Random();
+        servant = servants.get(number.nextInt(servants.size()));
 
         // Shuffle servants
         UI.getCurrent().setPollInterval(50);
@@ -499,8 +476,10 @@ public class MainView extends HorizontalLayout {
                    if(isShuffling) {
                        UI.getCurrent().setPollInterval(-1);
 
+                       number = new Random();
+
                        while(usedServants.contains(getServantID(servant.getImage()))) {
-                           servant = getData("servants.txt");
+                           servant = servants.get(number.nextInt(servants.size()));
                        }
 
                        name.setText(servant.getName());
@@ -508,6 +487,7 @@ public class MainView extends HorizontalLayout {
 
                        shuffling.setText("Click to shuffle");
                        usedServants.add(getServantID(servant.getImage()));
+                       System.out.println(usedServants);
                        servantCount++;
                        isShuffling = !isShuffling;
                        parameterClicked = !parameterClicked;
