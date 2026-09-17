@@ -125,3 +125,67 @@ Queen Medb, E, B, EX, E, C, A+, 99.png
 Queen Medb, E, B, EX, E, C, A+, 99.1.png
 Queen Medb, E, B, EX, E, C, A+, 99.2.png
 Helena Blavatsky, E, D, A, E, A, A, 100.png
+Queen Medb, E, B, EX, E, C, A+, 99.png
+Queen Medb, E, B, EX, E, C, A+, 99.1.png
+Queen Medb, E, B, EX, E, C, A+, 99.2.png
+Helena Blavatsky, E, D, A, E, A, A, 100.png
+Rama, A, A+, B, B, B, A, 101.png
+Li Shuwen, B, A, E, C, E, ?, 102.png
+Thomas Edison, E, E, A, EX, EX, EX, 103.png
+Geronimo, C, B, C, D, B+, B, 104.png
+Billy the Kid, D, B, B, E, E, C, 105.png
+Jeanne d'Arc (Alter), A, A, E, C, A+, A+, 106.png
+Jeanne d'Arc (Alter), A, A, E, C, A+, A+, 106.1.png
+Aŋra Mainyu, E, A, E+, E, D, C, 107.png
+Iskandar, B, D, A+, A, C, A++, 108.png
+Emiya (Assassin), D, A+, E, C, C, B++, 109.png
+Hassan of the Hundred Personas, C, A, E, D, C, B, 110.png
+Irisviel (Holy Grail), E, C, B, E, A+, B, 111.png
+Shuten-Douji, A, B, D, B, A+, B, 112.png
+Shuten-Douji, A, B, D, B, A+, B, 112.1.png
+Xuanzang Sanzang, E, B, EX, D, A+, A, 113.png
+Minamoto-no-Raikou, A, D, C, B, A, A+, 114.png
+Sakata Kintoki (Rider), A+, B+, C, B, C, B, 115.png
+Ibaraki-Douji, B, C, B, A+, C, C, 116.png
+Fuuma "Evil-wind" Kotarou, C+, A+, B, D, B, C, 117.png
+Fuuma "Evil-wind" Kotarou, C+, A+, B, D, B, C, 117.1.png
+Ozymandias, C, B, A+, C, A, EX, 118.png
+Altria Pendragon (Lancer), B, A, C, A, A, A++, 119.png
+Nitocris, E, C, B+, E, A, B+, 120.png
+Nitocris, E, C, B+, E, A, B+, 120.1.png
+Lancelot, B, B, B+, A, C, A++, 121.png
+Lancelot, B, B, B+, A, C, A++, 121.1.png
+Tristan, B, A, E, B, B, A, 122.png
+Tristan, B, A, E, B, B, A, 122.1.png
+Gawain, B+, B+, A, B+, A, A+, 123.png
+Gawain, B+, B+, A, B+, A, A+, 123.1.png
+Hassan of the Serenity, D, A+, A, D, C, C, 124.png
+Hassan of the Serenity, D, A+, A, D, C, C, 124.1.png
+Tawara Touta, B, D, B, B, C, A, 125.png
+Bedivere, A, A+, B, B, C, A, 126.png
+Bedivere, A, A+, B, B, C, A, 126.1.png
+Leonardo da Vinci, E, C, B, E, A+, EX, 127.png
+Tamamo-no-Mae (Lancer), B, A, A, C, E, C, 128.png
+Altria Pendragon (Archer), C, B+, A+, C, A+, A, 129.png
+Marie Antoinette (Caster), E, C, B+, D, A, A+, 130.png
+Anne Bonny & Mary Read (Archer), D, A, A, C, D, A, 131.png
+Mordred (Rider), C+, A+, A, B, B, A, 132.png
+Scáthach (Assassin), C, A+, D, C, C, A+, 133.png
+Kiyohime (Lancer), D, B, A+, D, E, C, 134.png
+Martha (Ruler), B+, B, A+, B, A, A, 135.png
+Illyasviel von Einzbern, E, D, A, C, B, A+, 136.png
+Chloe von Einzbern, D, B, C, C, C, C, 137.png
+Elisabeth Báthory (Brave), B, C, B, C, C, C, 138.png
+Cleopatra, B, A, D, C, D, A, 139.png
+Vlad III (EXTRA), B, E, D, A, A, C, 140.png
+Jeanne d'Arc Alter Santa Lily, C, A, A++, D, B, A+, 141.png
+Ishtar, B, B, A, B, EX, A++, 142.png
+Enkidu, ?, ?, ?, ?, ?, A++, 143.png
+Quetzalcoatl, B, B+, A+, B, EX, EX, 144.png
+Gilgamesh, C, C, A, D, B, EX, 145.png
+Gilgamesh, C, C, A, D, B, EX, 145.1.png
+Medusa, C, A, C, D, E, A+, 146.png
+Gorgon, A++, B, D, A++, B, A, 147.png
+Jaguar Warrior, C, B, B, C, E, B, 148.png
+Tiamat, A+, C, EX, EX, A++, ?, 149.png
+Merlin, B, D, C, E, A, C, 150.png
