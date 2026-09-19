@@ -7,16 +7,16 @@ Fate/Stats is a Java-based web application inspired by the Fate franchise. Playe
 - Servant and parameter images
 - Interactive parameter ranking
 - Score and multiplier system
-- Progress bar for tracking score
+- High score tracker
+- Best possible score tracker
 - End of game summary
 - Responsive web-based interface
 
 # Technologies
 - Java
--Vaadin
+- Vaadin
 - Maven
 - HTML/CSS
-- IntelliJ IDEA
 
 # How to Run
 Prerequisites
