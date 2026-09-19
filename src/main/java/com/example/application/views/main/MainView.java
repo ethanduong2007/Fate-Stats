@@ -98,8 +98,6 @@ public class MainView extends HorizontalLayout {
      * @throws Exception
      */
     public void getRandomServant() throws Exception {
-        System.out.println("SHUFFLE: " + servant.getName() + " | " + servant.getImage());
-
         // Display servant data
         number = new Random();
         servant = servants.get(number.nextInt(servants.size()));
@@ -332,37 +330,31 @@ public class MainView extends HorizontalLayout {
                 endStrSummary.setText("STR: " + servant.getSTR());
                 strImageSummary.setSrc("images/servants/" + servant.getImage());
                 usedParameters.add("STR");
-                System.out.println("SUMMARY: STR <- " + servant.getName() + " | " + servant.getImage());
             } else if(parameter.equals("AGL")) {
                 aglSummary.setText("AGL: " + servant.getAGL());
                 endAglSummary.setText("AGL: " + servant.getAGL());
                 aglImageSummary.setSrc("images/servants/" + servant.getImage());
                 usedParameters.add("AGL");
-                System.out.println("SUMMARY: AGL <- " + servant.getName() + " | " + servant.getImage());
             } else if(parameter.equals("LUK")) {
                 lukSummary.setText("LUK: " + servant.getLUK());
                 endLukSummary.setText("LUK: " + servant.getLUK());
                 lukImageSummary.setSrc("images/servants/" + servant.getImage());
                 usedParameters.add("LUK");
-                System.out.println("SUMMARY: LUK <- " + servant.getName() + " | " + servant.getImage());
             } else if(parameter.equals("END")) {
                 endSummary.setText("END: " + servant.getEND());
                 endEndSummary.setText("END: " + servant.getEND());
                 endImageSummary.setSrc("images/servants/" + servant.getImage());
                 usedParameters.add("END");
-                System.out.println("SUMMARY: END <- " + servant.getName() + " | " + servant.getImage());
             } else if(parameter.equals("MP")) {
                 mpSummary.setText("MP: " + servant.getMP());
                 endMpSummary.setText("MP: " + servant.getMP());
                 mpImageSummary.setSrc("images/servants/" + servant.getImage());
                 usedParameters.add("MP");
-                System.out.println("SUMMARY: MP <- " + servant.getName() + " | " + servant.getImage());
             } else if(parameter.equals("NP")) {
                 npSummary.setText("NP: " + servant.getNP());
                 endNpSummary.setText("NP: " + servant.getNP());
                 npImageSummary.setSrc("images/servants/" + servant.getImage());
                 usedParameters.add("NP");
-                System.out.println("SUMMARY: NP <- " + servant.getName() + " | " + servant.getImage());
             }
 
             parameterClicked = true;
@@ -375,23 +367,11 @@ public class MainView extends HorizontalLayout {
      * Ends the game
      */
     private void endGame() {
-        System.out.println("SELECTED SERVANTS:");
-        for(int i = 0; i < selectedServants.size(); i++) {
-            System.out.println(i + ": " + selectedServants.get(i).getName()
-                    + " | " + selectedServants.get(i).getImage());
-        }
-
         if(servantCount == 6) {
             finalScore.setText("Final Score: " + (int) scoreLogic.calculateScore());
             theorereticalBestScore.setText("Best Possible Score: " + (int) theoreticalScoreLogic.calculateTheoreticalHighScore(selectedServants));
 
             String[] bestAssignment = theoreticalScoreLogic.getBestAssignment();
-
-            System.out.println("BEST ASSIGNMENT:");
-            for(int i = 0; i < bestAssignment.length; i++) {
-                System.out.println(i + ": " + selectedServants.get(i).getName()
-                        + " -> " + bestAssignment[i]);
-            }
 
             for(int i = 0; i < bestAssignment.length; i++) {
                 if(bestAssignment[i].equals("STR")) {
@@ -415,11 +395,7 @@ public class MainView extends HorizontalLayout {
                 }
             }
 
-            for(int i = 0; i < bestAssignment.length; i++) {
-                System.out.println("DISPLAY: " + bestAssignment[i]
-                        + " <- " + selectedServants.get(i).getName()
-                        + " | " + selectedServants.get(i).getImage());
-            }
+            scoreLogic.calculateHighScore();
 
             endScreen.open();
         }
@@ -555,14 +531,9 @@ public class MainView extends HorizontalLayout {
                        shuffling.setText("Click to shuffle");
                        servantImage.setSrc("images/servants/" + servant.getImage());
 
-                       System.out.println("LOCKING: " + servant.getName() + " | " + servant.getImage());
-
                        usedServants.add(getServantID(servant.getImage()));
                        selectedServants.add(servant);
                        servantCount++;
-
-                       System.out.println("ADDED: " + servant.getName() + " | " + servant.getImage());
-                       System.out.println("USED: " + usedServants);
 
                        isShuffling = !isShuffling;
                        parameterClicked = !parameterClicked;
