@@ -367,11 +367,23 @@ public class MainView extends HorizontalLayout {
      * Ends the game
      */
     private void endGame() {
+        System.out.println("SELECTED SERVANTS:");
+        for(int i = 0; i < selectedServants.size(); i++) {
+            System.out.println(i + ": " + selectedServants.get(i).getName()
+                    + " | " + selectedServants.get(i).getImage());
+        }
+
         if(servantCount == 6) {
             finalScore.setText("Final Score: " + (int) scoreLogic.calculateScore());
             theorereticalBestScore.setText("Best Possible Score: " + (int) theoreticalScoreLogic.calculateTheoreticalHighScore(selectedServants));
 
             String[] bestAssignment = theoreticalScoreLogic.getBestAssignment();
+
+            System.out.println("BEST ASSIGNMENT:");
+            for(int i = 0; i < bestAssignment.length; i++) {
+                System.out.println(i + ": " + selectedServants.get(i).getName()
+                        + " -> " + bestAssignment[i]);
+            }
 
             for(int i = 0; i < bestAssignment.length; i++) {
                 if(bestAssignment[i].equals("STR")) {
@@ -393,6 +405,12 @@ public class MainView extends HorizontalLayout {
                     bestNpSummary.setText("NP: " + selectedServants.get(i).getParameter("NP"));
                     bestNpImageSummary.setSrc("images/servants/" + selectedServants.get(i).getImage());
                 }
+            }
+
+            for(int i = 0; i < bestAssignment.length; i++) {
+                System.out.println("DISPLAY: " + bestAssignment[i]
+                        + " <- " + selectedServants.get(i).getName()
+                        + " | " + selectedServants.get(i).getImage());
             }
 
             endScreen.open();
@@ -454,7 +472,7 @@ public class MainView extends HorizontalLayout {
         endAglSummary = createParameterSummary("AGL");
         aglImage = createParameterImage();
         aglImageSummary = createParameterImageSummary();
-        bestAglSummary = createParameterSummary("STR");
+        bestAglSummary = createParameterSummary("AGL");
         bestAglImageSummary = createParameterImageSummary();
 
         luk = createParameter("LUK");
@@ -462,7 +480,7 @@ public class MainView extends HorizontalLayout {
         endLukSummary = createParameterSummary("LUK");
         lukImage = createParameterImage();
         lukImageSummary = createParameterImageSummary();
-        bestLukSummary = createParameterSummary("STR");
+        bestLukSummary = createParameterSummary("LUK");
         bestLukImageSummary = createParameterImageSummary();
 
         end = createParameter("END");
@@ -470,7 +488,7 @@ public class MainView extends HorizontalLayout {
         endEndSummary = createParameterSummary("END");
         endImage = createParameterImage();
         endImageSummary = createParameterImageSummary();
-        bestEndSummary = createParameterSummary("STR");
+        bestEndSummary = createParameterSummary("END");
         bestEndImageSummary = createParameterImageSummary();
 
         mp = createParameter("MP");
@@ -478,7 +496,7 @@ public class MainView extends HorizontalLayout {
         endMpSummary = createParameterSummary("MP");
         mpImage = createParameterImage();
         mpImageSummary = createParameterImageSummary();
-        bestMpSummary = createParameterSummary("STR");
+        bestMpSummary = createParameterSummary("MP");
         bestMpImageSummary = createParameterImageSummary();
 
         np = createParameter("NP");
@@ -486,7 +504,7 @@ public class MainView extends HorizontalLayout {
         endNpSummary = createParameterSummary("NP");
         npImage = createParameterImage();
         npImageSummary = createParameterImageSummary();
-        bestNpSummary = createParameterSummary("STR");
+        bestNpSummary = createParameterSummary("NP");
         bestNpImageSummary = createParameterImageSummary();
 
         // Display score
@@ -529,6 +547,10 @@ public class MainView extends HorizontalLayout {
                        shuffling.setText("Click to shuffle");
                        usedServants.add(getServantID(servant.getImage()));
                        selectedServants.add(servant);
+
+                       System.out.println("ADDED: " + servant.getName() + " | " + servant.getImage());
+                       System.out.println("USED: " + usedServants);
+
                        servantCount++;
                        isShuffling = !isShuffling;
                        parameterClicked = !parameterClicked;
