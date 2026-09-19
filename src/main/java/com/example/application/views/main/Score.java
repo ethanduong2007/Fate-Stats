@@ -173,7 +173,7 @@ public class Score {
 
             totalScore *= theoreticalMultiplier;
 
-            if(totalScore > theoreticalHighScore) {
+            if(totalScore >= theoreticalHighScore) {
                 theoreticalHighScore = totalScore;
 
                 for(int i = 0; i < bestAssignment.length; i++) {

@@ -36,7 +36,7 @@ public class MainView extends HorizontalLayout {
 
     private Span str, agl, luk, end, mp, np;
     private Span strSummary, endStrSummary, aglSummary, endAglSummary, lukSummary, endLukSummary, endSummary, endEndSummary, mpSummary, endMpSummary, npSummary, endNpSummary;
-    private Span bestStrSummary, bestAglSummary, bestEndAglSummary, bestLukSummary, bestEndSummary, bestMpSummary, bestNpSummary;
+    private Span bestStrSummary, bestAglSummary, bestLukSummary, bestEndSummary, bestMpSummary, bestNpSummary;
 
     private Image strImage, aglImage, lukImage, endImage, mpImage, npImage;
     private Image strImageSummary, aglImageSummary, lukImageSummary, endImageSummary, mpImageSummary, npImageSummary;
@@ -98,6 +98,8 @@ public class MainView extends HorizontalLayout {
      * @throws Exception
      */
     public void getRandomServant() throws Exception {
+        System.out.println("SHUFFLE: " + servant.getName() + " | " + servant.getImage());
+
         // Display servant data
         number = new Random();
         servant = servants.get(number.nextInt(servants.size()));
@@ -330,31 +332,37 @@ public class MainView extends HorizontalLayout {
                 endStrSummary.setText("STR: " + servant.getSTR());
                 strImageSummary.setSrc("images/servants/" + servant.getImage());
                 usedParameters.add("STR");
+                System.out.println("SUMMARY: STR <- " + servant.getName() + " | " + servant.getImage());
             } else if(parameter.equals("AGL")) {
                 aglSummary.setText("AGL: " + servant.getAGL());
                 endAglSummary.setText("AGL: " + servant.getAGL());
                 aglImageSummary.setSrc("images/servants/" + servant.getImage());
                 usedParameters.add("AGL");
+                System.out.println("SUMMARY: AGL <- " + servant.getName() + " | " + servant.getImage());
             } else if(parameter.equals("LUK")) {
                 lukSummary.setText("LUK: " + servant.getLUK());
                 endLukSummary.setText("LUK: " + servant.getLUK());
                 lukImageSummary.setSrc("images/servants/" + servant.getImage());
                 usedParameters.add("LUK");
+                System.out.println("SUMMARY: LUK <- " + servant.getName() + " | " + servant.getImage());
             } else if(parameter.equals("END")) {
                 endSummary.setText("END: " + servant.getEND());
                 endEndSummary.setText("END: " + servant.getEND());
                 endImageSummary.setSrc("images/servants/" + servant.getImage());
                 usedParameters.add("END");
+                System.out.println("SUMMARY: END <- " + servant.getName() + " | " + servant.getImage());
             } else if(parameter.equals("MP")) {
                 mpSummary.setText("MP: " + servant.getMP());
                 endMpSummary.setText("MP: " + servant.getMP());
                 mpImageSummary.setSrc("images/servants/" + servant.getImage());
                 usedParameters.add("MP");
+                System.out.println("SUMMARY: MP <- " + servant.getName() + " | " + servant.getImage());
             } else if(parameter.equals("NP")) {
                 npSummary.setText("NP: " + servant.getNP());
                 endNpSummary.setText("NP: " + servant.getNP());
                 npImageSummary.setSrc("images/servants/" + servant.getImage());
                 usedParameters.add("NP");
+                System.out.println("SUMMARY: NP <- " + servant.getName() + " | " + servant.getImage());
             }
 
             parameterClicked = true;
@@ -441,7 +449,9 @@ public class MainView extends HorizontalLayout {
 
         UI.getCurrent().addPollListener(event -> {
             try {
-                getRandomServant();
+                if(isShuffling) {
+                    getRandomServant();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -542,16 +552,18 @@ public class MainView extends HorizontalLayout {
                        }
 
                        name.setText(servant.getName());
+                       shuffling.setText("Click to shuffle");
                        servantImage.setSrc("images/servants/" + servant.getImage());
 
-                       shuffling.setText("Click to shuffle");
+                       System.out.println("LOCKING: " + servant.getName() + " | " + servant.getImage());
+
                        usedServants.add(getServantID(servant.getImage()));
                        selectedServants.add(servant);
+                       servantCount++;
 
                        System.out.println("ADDED: " + servant.getName() + " | " + servant.getImage());
                        System.out.println("USED: " + usedServants);
 
-                       servantCount++;
                        isShuffling = !isShuffling;
                        parameterClicked = !parameterClicked;
                    // Continue shuffling
