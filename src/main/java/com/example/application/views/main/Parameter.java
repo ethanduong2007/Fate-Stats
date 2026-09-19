@@ -59,6 +59,21 @@ public class Parameter {
         return np;
     }
     public String getImage() { return image; }
+    public String getParameter(String parameter) {
+        if(parameter.equals("STR")) {
+            return str;
+        } else if(parameter.equals("AGL")) {
+            return agl;
+        } else if(parameter.equals("LUK")) {
+            return luk;
+        } else if(parameter.equals("END")) {
+            return end;
+        } else if(parameter.equals("MP")) {
+            return mp;
+        } else {
+            return np;
+        }
+    }
 
     // Setter methods
     public void setName(String name) { this.name = name; }

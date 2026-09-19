@@ -36,9 +36,11 @@ public class MainView extends HorizontalLayout {
 
     private Span str, agl, luk, end, mp, np;
     private Span strSummary, endStrSummary, aglSummary, endAglSummary, lukSummary, endLukSummary, endSummary, endEndSummary, mpSummary, endMpSummary, npSummary, endNpSummary;
+    private Span bestStrSummary, bestAglSummary, bestEndAglSummary, bestLukSummary, bestEndSummary, bestMpSummary, bestNpSummary;
 
     private Image strImage, aglImage, lukImage, endImage, mpImage, npImage;
     private Image strImageSummary, aglImageSummary, lukImageSummary, endImageSummary, mpImageSummary, npImageSummary;
+    private Image bestStrImageSummary, bestAglImageSummary, bestLukImageSummary, bestEndImageSummary, bestMpImageSummary, bestNpImageSummary;
 
     // Initialize tracking variables
     private boolean isShuffling = true;
@@ -49,13 +51,15 @@ public class MainView extends HorizontalLayout {
     private ArrayList<Parameter> servants;
     private int servantCount = 0;
     private Set<String> usedServants = new HashSet<>();
-
+    private ArrayList<Parameter> selectedServants = new ArrayList<>();
     private Set<String> usedParameters = new HashSet<>();
 
     // Initialize scoring variables
     private Score scoreLogic = new Score();
+    private Score theoreticalScoreLogic = new Score();
     private Span scoreDisplay, multiplierDisplay;
     private Span finalScore;
+    private Span theorereticalBestScore;
 
     // Initialize end screen
     private Dialog endScreen;
@@ -202,7 +206,7 @@ public class MainView extends HorizontalLayout {
     private Span createParameterSummary(String parameter) {
         Span span = new Span(parameter + ": ?");
         span.getStyle().set("font-size", "15px").set("text-align", "center"); // Original size is 20px
-        span.setWidth("120px");
+        span.setWidth("80px");
         return span;
     }
 
@@ -225,7 +229,7 @@ public class MainView extends HorizontalLayout {
      */
     private Image createParameterImageSummary() {
         Image image = getRankImage("?");
-        image.setWidth("150px");
+        image.setWidth("120px");
         image.setHeight("auto");
         return image;
     }
@@ -256,9 +260,8 @@ public class MainView extends HorizontalLayout {
     private VerticalLayout createParameterSummaryLayout(Span parameter, Image parameterImage) {
         VerticalLayout verticalLayout = new VerticalLayout(parameter, parameterImage);
         verticalLayout.setAlignItems(FlexComponent.Alignment.CENTER);
-        verticalLayout.setWidthFull();
         verticalLayout.setSpacing(false);
-        verticalLayout.getStyle().set("padding", "8px");
+        verticalLayout.getStyle().set("padding-left", "5px").set("padding-right", "5px").set("padding-top", "0px");
         return verticalLayout;
     }
 
@@ -282,7 +285,7 @@ public class MainView extends HorizontalLayout {
      * @param parameter is the parameter of the servant
      * @return the value of the parameter
      */
-    private String getParameterValue(String parameter) {
+    private String getParameterValue(Parameter servant, String parameter) {
         if(parameter.equals("STR")) {
             return servant.getSTR();
         } else if(parameter.equals("AGL")) {
@@ -305,7 +308,7 @@ public class MainView extends HorizontalLayout {
      */
     private void parameterClicked(String parameter) {
         if (!isShuffling && !parameterUsed(parameter) && !parameterClicked) {
-            scoreLogic.addScore(getParameterValue(parameter));
+            scoreLogic.addScore(getParameterValue(servant, parameter));
             scoreDisplay.setText("Score " + scoreLogic.getScore());
             multiplierDisplay.setText("Multiplier " + scoreLogic.getMultiplier() + "x");
 
@@ -365,8 +368,33 @@ public class MainView extends HorizontalLayout {
      */
     private void endGame() {
         if(servantCount == 6) {
-            scoreLogic.calculateHighScore();
             finalScore.setText("Final Score: " + (int) scoreLogic.calculateScore());
+            theorereticalBestScore.setText("Best Possible Score: " + (int) theoreticalScoreLogic.calculateTheoreticalHighScore(selectedServants));
+
+            String[] bestAssignment = theoreticalScoreLogic.getBestAssignment();
+
+            for(int i = 0; i < bestAssignment.length; i++) {
+                if(bestAssignment[i].equals("STR")) {
+                    bestStrSummary.setText("STR: " + selectedServants.get(i).getParameter("STR"));
+                    bestStrImageSummary.setSrc("images/servants/" + selectedServants.get(i).getImage());
+                } else if(bestAssignment[i].equals("AGL")) {
+                    bestAglSummary.setText("AGL: " + selectedServants.get(i).getParameter("AGL"));
+                    bestAglImageSummary.setSrc("images/servants/" + selectedServants.get(i).getImage());
+                } else if(bestAssignment[i].equals("LUK")) {
+                    bestLukSummary.setText("LUK: " + selectedServants.get(i).getParameter("LUK"));
+                    bestLukImageSummary.setSrc("images/servants/" + selectedServants.get(i).getImage());
+                } else if(bestAssignment[i].equals("END")) {
+                    bestEndSummary.setText("END: " + selectedServants.get(i).getParameter("END"));
+                    bestEndImageSummary.setSrc("images/servants/" + selectedServants.get(i).getImage());
+                } else if(bestAssignment[i].equals("MP")) {
+                    bestMpSummary.setText("MP: " + selectedServants.get(i).getParameter("MP"));
+                    bestMpImageSummary.setSrc("images/servants/" + selectedServants.get(i).getImage());
+                } else if(bestAssignment[i].equals("NP")) {
+                    bestNpSummary.setText("NP: " + selectedServants.get(i).getParameter("NP"));
+                    bestNpImageSummary.setSrc("images/servants/" + selectedServants.get(i).getImage());
+                }
+            }
+
             endScreen.open();
         }
     }
@@ -376,6 +404,7 @@ public class MainView extends HorizontalLayout {
      */
     private void resetGame() {
         usedServants.clear();
+        selectedServants.clear();
         usedParameters.clear();
     }
 
@@ -417,36 +446,48 @@ public class MainView extends HorizontalLayout {
         endStrSummary = createParameterSummary("STR");
         strImage = createParameterImage();
         strImageSummary = createParameterImageSummary();
+        bestStrSummary = createParameterSummary("STR");
+        bestStrImageSummary = createParameterImageSummary();
 
         agl = createParameter("AGL");
         aglSummary = createParameter("AGL");
         endAglSummary = createParameterSummary("AGL");
         aglImage = createParameterImage();
         aglImageSummary = createParameterImageSummary();
+        bestAglSummary = createParameterSummary("STR");
+        bestAglImageSummary = createParameterImageSummary();
 
         luk = createParameter("LUK");
         lukSummary = createParameter("LUK");
         endLukSummary = createParameterSummary("LUK");
         lukImage = createParameterImage();
         lukImageSummary = createParameterImageSummary();
+        bestLukSummary = createParameterSummary("STR");
+        bestLukImageSummary = createParameterImageSummary();
 
         end = createParameter("END");
         endSummary = createParameter("END");
         endEndSummary = createParameterSummary("END");
         endImage = createParameterImage();
         endImageSummary = createParameterImageSummary();
+        bestEndSummary = createParameterSummary("STR");
+        bestEndImageSummary = createParameterImageSummary();
 
         mp = createParameter("MP");
         mpSummary = createParameter("MP");
         endMpSummary = createParameterSummary("MP");
         mpImage = createParameterImage();
         mpImageSummary = createParameterImageSummary();
+        bestMpSummary = createParameterSummary("STR");
+        bestMpImageSummary = createParameterImageSummary();
 
         np = createParameter("NP");
         npSummary = createParameter("NP");
         endNpSummary = createParameterSummary("NP");
         npImage = createParameterImage();
         npImageSummary = createParameterImageSummary();
+        bestNpSummary = createParameterSummary("STR");
+        bestNpImageSummary = createParameterImageSummary();
 
         // Display score
         scoreDisplay = new Span("Score " + scoreLogic.getScore());
@@ -487,6 +528,7 @@ public class MainView extends HorizontalLayout {
 
                        shuffling.setText("Click to shuffle");
                        usedServants.add(getServantID(servant.getImage()));
+                       selectedServants.add(servant);
                        servantCount++;
                        isShuffling = !isShuffling;
                        parameterClicked = !parameterClicked;
@@ -546,7 +588,7 @@ public class MainView extends HorizontalLayout {
         endScreen = new Dialog();
 
         endScreen.getElement().getStyle().set("--vaadin-dialog-overlay-width", "100%");
-        endScreen.setWidth("750px");
+        endScreen.setWidth("900px");
         endScreen.setCloseOnEsc(false);
         endScreen.setCloseOnOutsideClick(false);
         endScreen.addClassName("game-dialog");
@@ -563,23 +605,41 @@ public class MainView extends HorizontalLayout {
         VerticalLayout endMpDisplay = createParameterSummaryLayout(endMpSummary, mpImageSummary);
         VerticalLayout endNpDisplay = createParameterSummaryLayout(endNpSummary, npImageSummary);
 
-        HorizontalLayout endSummaryDisplay1 = new HorizontalLayout(endStrDisplay, endAglDisplay, endLukDisplay);
-        HorizontalLayout endSummaryDisplay2 = new HorizontalLayout(endEndDisplay, endMpDisplay, endNpDisplay);
+        HorizontalLayout endSummaryDisplay = new HorizontalLayout(endStrDisplay, endAglDisplay, endLukDisplay, endEndDisplay, endMpDisplay, endNpDisplay);
 
-        endSummaryDisplay1.setAlignItems(FlexComponent.Alignment.CENTER);
-        endSummaryDisplay1.setSpacing(false);
-        endSummaryDisplay1.setPadding(false);
-
-        endSummaryDisplay2.setAlignItems(FlexComponent.Alignment.CENTER);
-        endSummaryDisplay2.setSpacing(false);
-        endSummaryDisplay2.setPadding(false);
-
-        VerticalLayout endSummaryDisplay = new VerticalLayout(endSummaryDisplay1, endSummaryDisplay2);
-        endSummaryDisplay.getStyle().set("border", "1px solid white").set("border-radius", "10px").set("padding", "5px");
-        endSummaryDisplay.setSpacing(false);
-        endSummaryDisplay.setPadding(false);
-        endSummaryDisplay.setWidthFull();
         endSummaryDisplay.setAlignItems(FlexComponent.Alignment.CENTER);
+        endSummaryDisplay.setSpacing(false);
+        endSummaryDisplay.setSpacing(false);
+
+        VerticalLayout endScoreSummary = new VerticalLayout(finalScore, endSummaryDisplay);
+        endScoreSummary.getStyle().set("border", "1px solid white").set("border-radius", "10px").set("padding", "5px");
+        endScoreSummary.setAlignItems(FlexComponent.Alignment.CENTER);
+        endScoreSummary.setSpacing(false);
+        endScoreSummary.setPadding(false);
+
+        // Display theoretical high score
+        theorereticalBestScore = new Span("Best Possible Score: ");
+        theorereticalBestScore.getStyle().set("font-size", "25px");
+
+        // Display end screen theoretical high score summary
+        VerticalLayout bestStrDisplay = createParameterSummaryLayout(bestStrSummary, bestStrImageSummary);
+        VerticalLayout bestAglDisplay = createParameterSummaryLayout(bestAglSummary, bestAglImageSummary);
+        VerticalLayout bestLukDisplay = createParameterSummaryLayout(bestLukSummary, bestLukImageSummary);
+        VerticalLayout bestEndDisplay = createParameterSummaryLayout(bestEndSummary, bestEndImageSummary);
+        VerticalLayout bestMpDisplay = createParameterSummaryLayout(bestMpSummary, bestMpImageSummary);
+        VerticalLayout bestNpDisplay = createParameterSummaryLayout(bestNpSummary, bestNpImageSummary);
+
+        HorizontalLayout bestSummaryDisplay = new HorizontalLayout(bestStrDisplay, bestAglDisplay, bestLukDisplay, bestEndDisplay, bestMpDisplay, bestNpDisplay);
+
+        bestSummaryDisplay.setAlignItems(FlexComponent.Alignment.CENTER);
+        bestSummaryDisplay.setSpacing(false);
+        bestSummaryDisplay.setSpacing(false);
+
+        VerticalLayout bestScoreSummary = new VerticalLayout(theorereticalBestScore, bestSummaryDisplay);
+        bestScoreSummary.getStyle().set("border", "1px solid white").set("border-radius", "10px").set("padding", "5px");
+        bestScoreSummary.setAlignItems(FlexComponent.Alignment.CENTER);
+        bestScoreSummary.setSpacing(false);
+        bestScoreSummary.setPadding(false);
 
         // Display restart button
         Button restart = new Button("Restart");
@@ -591,7 +651,7 @@ public class MainView extends HorizontalLayout {
         });
 
         restart.getStyle().set("font-size", "30px").set("background-color", "#1a1a1a");
-        restart.setWidth("300px");
+        restart.setWidth("400px");
         restart.setHeight("55px");
 
         // Display home button
@@ -604,12 +664,12 @@ public class MainView extends HorizontalLayout {
         });
 
         home.getStyle().set("font-size", "30px").set("background-color", "#1a1a1a");
-        home.setWidth("300px");
+        home.setWidth("400px");
         home.setHeight("55px");
 
         // Create end screen layout
         HorizontalLayout navigate = new HorizontalLayout(restart, home);
-        VerticalLayout endStats = new VerticalLayout(finalScore, endSummaryDisplay, navigate);
+        VerticalLayout endStats = new VerticalLayout(endScoreSummary, bestScoreSummary, navigate);
 
         endStats.setAlignItems(FlexComponent.Alignment.CENTER);
         endStats.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
