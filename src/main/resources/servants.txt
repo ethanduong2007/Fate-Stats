@@ -189,3 +189,59 @@ Gorgon, A++, B, D, A++, B, A, 147.png
 Jaguar Warrior, C, B, B, C, E, B, 148.png
 Tiamat, A+, C, EX, EX, A++, ?, 149.png
 Merlin, B, D, C, E, A, C, 150.png
+Goetia, A, D, B, A, A+, A+++, 151.png
+Solomon, E, B, A++, E, A++, A+++, 152.png
+Miyamoto Musashi, B, B, B, B, E, B, 153.png
+"First Hassan", B, B, E, A, E, A, 154.png
+Mysterious Heroine X (Alter), A, B, C, B, A+, A++, 155.png
+James Moriarty, C, A, A, D, B, C, 156.png
+James Moriarty, C, A, A, D, B, C, 156.1.png
+Emiya (Alter), C, D, E, B, B, ?, 157.png
+Hessian Lobo, A+, A+, D, B+, E, B+, 158.png
+Yan Qing, B, A+, B, D, D, D, 159.png
+Yan Qing, B, A+, B, D, D, D, 159.1.png
+Arthur Pendragon (Prototype), A, B, B, A+, B, EX, 160.png
+Arthur Pendragon (Prototype), A, B, B, A+, B, EX, 160.1.png
+Hijikata Toshizo, C, C, D, C, E, C+, 161.png
+Chacha, D, D, B, D, C, C, 162.png
+Meltryllis, E, A+, B, C, A, EX, 163.png
+Passionlip, A+, C, E, A, B, C, 164.png
+Suzuka Gozen, D, A, B, D, A, EX, 165.png
+BB, E, D, EX, C, A, A, 166.png
+Sessyoin Kiara, D, B+, E, A+, EX, EX, 167.png
+Beast III/R, C, B, A, EX, EX, EX, 168.png
+Scheherazade, E, E, EX, D, C, EX, 169.png
+Wu Zetian, D, A, A, E, B, B, 170.png
+Penthesilea, A+, C, D, B+, A, A, 171.png
+Christopher Columbus, C, D, EX, B, E, A, 172.png
+Sherlock Holmes, D, B+, A++, C, B, B, 173.png
+Paul Bunyan, C, C, E, A, E, C, 174.png
+Paul Bunyan, C, C, E, A, E, C, 174.1.png
+Nero Claudius (Caster), D, A, A, D, B, A, 175.png
+Frankenstein (Saber), C++, C, A, B, D, B, 176.png
+Nitocris (Assassin), E, B, A, E, A, B, 177.png
+Oda Nobunaga (Berserker), B, B, B, C, C, ?, 178.png
+Altria Pendragon Alter (Rider), B, B, B, C, A, A, 179.png
+Helena Blavatsky (Archer), E, B, A, D, A, B+, 180.png
+Minamoto-no-Raikou (Lancer), C, D, C, B, A, A+, 181.png
+Ishtar (Rider), C, A, B, C, B, EX, 182.png
+Pārvati, D, D, B, C, B, EX, 183.png
+Pārvati, D, D, B, C, B, EX, 183.1.png
+Tomoe Gozen, C, C, A, D, B, B+, 184.png
+Mochizuki Chiyome, D, A, C, D, C, C, 185.png
+Houzouin Inshun, C, A, B, D, D, C, 186.png
+Yagyu Tajima-no-kami Munenori, B, A++, B, D, E, B, 187.png
+Katou "Black Kite" Danzo, D, A, B, D, C, C, 188.png
+Osakabehime, E, E, A+, E, A+, A++, 189.png
+Mecha Eli-chan, A, E, E, A, E, B, 190.png
+Mecha Eli-chan Mk.II, A, E, E, A, E, B, 191.png
+Circe, E, D, A, B, A+, C, 192.png
+Nezha, C+, A, A, B, B, A, 193.png
+Queen of Sheba, D, D, A, C, A, B, 194.png
+Abigail Williams, B, C, C, A, B, A, 195.png
+Ereshkigal, A, D, B, B, B, A, 196.png
+Ereshkigal, A, D, B, B, B, A, 196.1.png
+Attila the San(ta), C, A+, A, B, A, EX, 197.png
+Katsushika Hokusai, D, B, A, D, B, A, 198.png
+Semiramis, E, D, A, D, A, B, 199.png
+Asagami Fujino, E, D, C, B, A, EX, 200.png
