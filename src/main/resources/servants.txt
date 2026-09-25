@@ -245,3 +245,60 @@ Attila the San(ta), C, A+, A, B, A, EX, 197.png
 Katsushika Hokusai, D, B, A, D, B, A, 198.png
 Semiramis, E, D, A, D, A, B, 199.png
 Asagami Fujino, E, D, C, B, A, EX, 200.png
+Anastasia, E, C, D, E, A, C, 201.png
+Atalante (Alter), C++, A+, E, C++, B, B+, 202.png
+Avicebron, E, D, B, E, A, A+, 203.png
+Antonio Salieri, B, A, B, C, C, C, 204.png
+Ivan the Terrible, B+, D, B, A+, C, A, 205.png
+Achilles, B+, A+, D, A, C, A+, 206.png
+Achilles, B+, A+, D, A, C, A+, 206.1.png
+Chiron, B, A+, C, B, B, A, 207.png
+Sieg, E, E, B, E, D, EX, 208.png
+Okita Souji (Alter), B, A, C, C, B, A, 209.png
+Okada Izo, C, B, E, D, E, C, 210.png
+Sakamoto Ryouma, C, B, A-, C, D, EX, 211.png
+Napoleon, D, A, B, C, E, B, 212.png
+Sigurd, A+, B, E, A+, C, A++, 213.png
+Sigurd, A+, B, E, A+, C, A++, 213.1.png
+Valkyrie, B, B, E, B, A+, B, 214.png
+Scáthach-Skadi, B, C, D, D, EX, A, 215.png
+Jeanne d'Arc (Archer), C, B+, A, A, C, A, 216.png
+Ibaraki-Douji (Lancer), B+, D+, B, A, D, B, 217.png
+Ushiwakamaru (Assassin), D, A++, A, C, B, B, 218.png
+Jeanne d'Arc Alter (Berserker), B, A, D, D, B, EX, 219.png
+BB, C, C, EX, C, A++, EX, 220.png
+Medb (Saber), C, B, EX, D, D, A+, 221.png
+Mysterious Heroine XX, B, B, D, B, E, EX, 222.png
+Diarmuid Ua Duibhne, B+, A, E, B, D, A, 223.png
+Sitonai, E, A, A, D, EX, A, 224.png
+Shuten-Douji (Caster), C+, B, B, B, A+, C, 225.png
+Xiang Yu, A, A, D, A, C, C, 226.png
+Prince of Lan Ling, B, A+, D, B, D, B, 227.png
+Prince of Lan Ling, B, A+, D, B, D, B, 227.1.png
+Qin Liangyu, C, A, A, B, D, B, 228.png
+Qin Shi Huang, B+, B+, B+, B+, B+, B+, 229.png
+Yu Mei-ren, C, D, E, A+, A+, C+, 230.png
+Red Hare, B, B+, C, EX, C, B, 231.png
+Bradamante, B, A, D, A+, C, B, 232.png
+Quetzalcoatl (Samba/Santa), A, B, EX, B+, A, A, 233.png
+Beni-Enma, D, A++, B, E, B, B, 234.png
+Li Shuwen, C, A+, E, D, E, ?, 235.png
+Miyu Edelfelt, E, C, C, D, A, A, 236.png
+Murasaki Shikibu, E, D, A+, E, B, C, 237.png
+Kingprotea, EX, A, B, EX, D, E, 238.png
+Kingprotea, EX, A, B, EX, D, E, 238.1.png
+Kingprotea, EX, A, B, EX, D, E, 238.2.png
+Kama, D, B, B, B+, A+, EX, 239.png
+Beast III/L, C, A, B, EX, EX, EX, 240.png
+Sima Yi (Reines), B, C, A+, C, A, B, 241.png
+Astraea, A+, D, B, A+, EX, A+, 242.png
+Gray, B, B, C, C, C, A+, 243.png
+Jinako Carigiri, B, E, A, A++, B, C, 244.png
+Lakshmi Bai, B, B, E-, B, C, A, 245.png
+William Tell, B, B, C, B, E, B, 246.png
+Arjuna (Alter), A, A, C, A+, A++, EX, 247.png
+Arjuna (Alter), A, A, C, A+, A++, EX, 247.1.png
+Arjuna (Alter), A, A, C, A+, A++, EX, 247.2.png
+Aśvatthāman, B, A++, A, A, B, A+, 248.png
+Asclepius, D, B, D, D, A, A+, 249.png
+Demon King Nobunaga, B, C, B, C, B, A-, 250.png

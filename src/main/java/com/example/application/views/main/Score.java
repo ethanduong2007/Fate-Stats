@@ -45,6 +45,8 @@ public class Score {
             score += 100;
         } else if(rank.equals("A")) {
             score += 50;
+        } else if(rank.equals("A-")) {
+            score += 45;
         } else if(rank.equals("B+++")) {
             score += 160;
         } else if(rank.equals("B++") || rank.equals("C+++")) {
@@ -63,6 +65,8 @@ public class Score {
             score += 20;
         } else if(rank.equals("E")) {
             score += 10;
+        } else if(rank.equals("E-")) {
+            score += 5;
         } else if(rank.equals("EX")) {
             multiplier += 0.5;
         } else {
@@ -84,7 +88,9 @@ public class Score {
         } else if(rank.equals("A+")) {
             return 100;
         } else if(rank.equals("A")) {
-             return 50;
+            return 50;
+        } else if(rank.equals("A-")) {
+            return 45;
         } else if(rank.equals("B+++")) {
              return 160;
         } else if(rank.equals("B++") || rank.equals("C+++")) {
@@ -103,6 +109,8 @@ public class Score {
             return 20;
         } else if(rank.equals("E")) {
             return 10;
+        } else if(rank.equals("E-")) {
+            return 5;
         } else if(rank.equals("EX")) {
             return 0;
         } else {
