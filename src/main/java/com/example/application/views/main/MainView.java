@@ -165,7 +165,7 @@ public class MainView extends HorizontalLayout {
      * @return the image of the rank
      */
     private String getRankPath(String rank) {
-        rank = rank.replace("+", "");
+        rank = rank.replace("+", "").replace("-", "");
 
         if(rank.equals("?")) {
             rank = "Unknown";
