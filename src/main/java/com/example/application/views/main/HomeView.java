@@ -28,8 +28,8 @@ public class HomeView extends VerticalLayout {
 
     private Span createScoringSpan(String score) {
         Span span = new Span(score + "+++: +200\n" + score + "++: +150\n" + score + "+: +100\n" + score + ": +50");
-        span.getStyle().set("font-size", "15px").set("text-align", "center").set("white-space", "pre-line"); // Original size is 20px
-        span.setWidth("140px"); // Original size is 175px
+        span.getStyle().set("font-size", "20px").set("text-align", "center").set("white-space", "pre-line");
+        span.setWidth("175px");
         return span;
     }
 
@@ -39,7 +39,7 @@ public class HomeView extends VerticalLayout {
 
         // Display title page
         title = new Span("Fate/Stats");
-        title.getStyle().set("font-size", "100px").set("border", "1px solid white").set("border-radius", "10px").set("padding", "10px");
+        title.getStyle().set("font-size", "100px").set("border", "1px solid white").set("border-radius", "10px").set("padding-left", "20px").set("padding-right", "20px");
 
         // Display play button
         Button play = new Button("Play");
@@ -48,9 +48,10 @@ public class HomeView extends VerticalLayout {
             UI.getCurrent().navigate("game");
         });
 
-        play.getStyle().set("font-size", "35px").set("background-color", "#1a1a1a"); // Original size is 50px
+        play.getStyle().set("font-size", "50px").set("background-color", "#141414").set("border", "1px solid white");
         play.setWidth("300px");
         play.setHeight("90px");
+        play.addClassName("highlight");
 
         // Display how to play button
         Button howToPlay = new Button("How to Play");
@@ -59,10 +60,10 @@ public class HomeView extends VerticalLayout {
             howToPlayScreen.open();
         });
 
-        howToPlay.getStyle().set("font-size", "35px").set("background-color", "#1a1a1a"); // Original size is 50px
+        howToPlay.getStyle().set("font-size", "50px").set("background-color", "#141414").set("border", "1px solid white");
         howToPlay.setWidth("300px");
         howToPlay.setHeight("90px");
-
+        howToPlay.addClassName("highlight");
 
         // Display how to play screen
         howToPlayScreen = new Dialog();
@@ -85,9 +86,9 @@ public class HomeView extends VerticalLayout {
         scoringD = createScoringSpan("D");
         scoringE = createScoringSpan("E");
 
-        scoringEX = new Span("EX: +0.5x multiplier\n" + "?: 0");
-        scoringEX.getStyle().set("font-size", "15px").set("text-align", "center").set("white-space", "pre-line").set("display", "flex").set("align-items", "center"); // Original size is 20px
-        scoringEX.setWidth("140px"); // Original size is 175px
+        scoringEX = new Span("EX: +0.5x multiplier\n" + "?: +0");
+        scoringEX.getStyle().set("font-size", "20px").set("text-align", "center").set("white-space", "pre-line").set("display", "flex").set("align-items", "center");
+        scoringEX.setWidth("175px");
 
         // Display close button for how to play screen
         Button close1 = new Button("Close");
@@ -96,9 +97,10 @@ public class HomeView extends VerticalLayout {
             howToPlayScreen.close();
         });
 
-        close1.getStyle().set("font-size", "30px").set("background-color", "#1a1a1a");
+        close1.getStyle().set("font-size", "30px").set("background-color", "#141414").set("border", "1px solid white");
         close1.setWidth("300px");
         close1.setHeight("55px");
+        close1.addClassName("highlight");
 
         // Create how to play screen layout
         HorizontalLayout scoring1 = new HorizontalLayout(scoringA, scoringB, scoringC);
@@ -126,9 +128,10 @@ public class HomeView extends VerticalLayout {
             creditsScreen.open();
         });
 
-        credits.getStyle().set("font-size", "35px").set("background-color", "#1a1a1a"); // Original size is 50px
+        credits.getStyle().set("font-size", "50px").set("background-color", "#141414").set("border", "1px solid white");
         credits.setWidth("300px");
         credits.setHeight("90px");
+        credits.addClassName("highlight");
 
         // Display credits screen
         creditsScreen = new Dialog();
@@ -148,9 +151,10 @@ public class HomeView extends VerticalLayout {
             UI.getCurrent().getPage().open("https://apps.atlasacademy.io/db/", "_blank");
         });
 
-        atlas.getStyle().set("font-size", "30px").set("background-color", "#1a1a1a");
+        atlas.getStyle().set("font-size", "30px").set("background-color", "#141414").set("border", "1px solid white");
         atlas.setWidth("500px");
         atlas.setHeight("70px");
+        atlas.addClassName("highlight");
 
         // Display wiki button
         Button wiki = new Button("Fate/Grand Order Wiki");
@@ -159,12 +163,13 @@ public class HomeView extends VerticalLayout {
             UI.getCurrent().getPage().open("https://fategrandorder.fandom.com/wiki/Fate/Grand_Order_Wikia", "_blank");
         });
 
-        wiki.getStyle().set("font-size", "30px").set("background-color", "#1a1a1a");
+        wiki.getStyle().set("font-size", "30px").set("background-color", "#141414").set("border", "1px solid white");
         wiki.setWidth("500px");
         wiki.setHeight("70px");
+        wiki.addClassName("highlight");
 
         // Display creator
-        creator = new Span("Creator: Wish");
+        creator = new Span("Creator: Wish | Email: ethan.duong2@gmail.com");
         creator.getStyle().set("font-size", "25px").set("text-align", "center");
 
         // Display close button for credits screen
@@ -174,9 +179,10 @@ public class HomeView extends VerticalLayout {
             creditsScreen.close();
         });
 
-        close2.getStyle().set("font-size", "30px").set("background-color", "#1a1a1a");
+        close2.getStyle().set("font-size", "30px").set("background-color", "#141414").set("border", "1px solid white");
         close2.setWidth("300px");
         close2.setHeight("55px");
+        close2.addClassName("highlight");
 
         // Create credits layout
         VerticalLayout information = new VerticalLayout(atlas, wiki, creator);

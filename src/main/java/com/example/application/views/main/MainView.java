@@ -18,10 +18,8 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 
-import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Set;
 
 @PageTitle("Fate/Stats")
 @Route("game")
@@ -49,10 +47,8 @@ public class MainView extends HorizontalLayout {
 
     private Random number;
     private ArrayList<Parameter> servants;
-    private int servantCount = 0;
-    private Set<String> usedServants = new HashSet<>();
-    private ArrayList<Parameter> selectedServants = new ArrayList<>();
-    private Set<String> usedParameters = new HashSet<>();
+
+    private GameState gameState = new GameState();
 
     // Initialize scoring variables
     private Score scoreLogic = new Score();
@@ -192,7 +188,7 @@ public class MainView extends HorizontalLayout {
      */
     private Span createParameter(String parameter) {
         Span span = new Span(parameter + ": ?");
-        span.getStyle().set("font-size", "15px").set("padding-left", "10px"); // Original size is 20px
+        span.getStyle().set("font-size", "18px").set("padding-left", "15px");
         span.setWidth("90px");
         return span;
     }
@@ -205,7 +201,7 @@ public class MainView extends HorizontalLayout {
      */
     private Span createParameterSummary(String parameter) {
         Span span = new Span(parameter + ": ?");
-        span.getStyle().set("font-size", "15px").set("text-align", "center"); // Original size is 20px
+        span.getStyle().set("font-size", "18px").set("text-align", "center");
         span.setWidth("80px");
         return span;
     }
@@ -243,7 +239,6 @@ public class MainView extends HorizontalLayout {
      */
     private HorizontalLayout createParameterLayout(Span parameter, Image parameterImage) {
         HorizontalLayout horizontalLayout = new HorizontalLayout(parameter, parameterImage);
-        horizontalLayout.setWidth("100%");
         horizontalLayout.setMaxWidth("500px");
         horizontalLayout.getStyle().set("border", "1px solid white").set("border-radius", "10px").set("padding", "5px");
         horizontalLayout.setAlignItems(FlexComponent.Alignment.CENTER);
@@ -261,8 +256,28 @@ public class MainView extends HorizontalLayout {
         VerticalLayout verticalLayout = new VerticalLayout(parameter, parameterImage);
         verticalLayout.setAlignItems(FlexComponent.Alignment.CENTER);
         verticalLayout.setSpacing(false);
-        verticalLayout.getStyle().set("padding-left", "5px").set("padding-right", "5px").set("padding-top", "0px");
+        verticalLayout.getStyle().set("padding-left", "3px").set("padding-right", "3px").set("padding-top", "0px");
         return verticalLayout;
+    }
+
+    /**
+     * Add border highlights when parameter is clickable
+     * @param parameter is the parameter of a servant
+     * @param info is the name and image of a servant
+     * @param paramaeterRows is the list of parameters
+     */
+    private void clickableParameters(String parameter, VerticalLayout info, HorizontalLayout[] paramaeterRows) {
+        if(!isShuffling && !parameterClicked && !parameterUsed(parameter)) {
+            parameterClicked(parameter);
+
+            shuffling.setText("Click to shuffle");
+
+            for (int i = 0; i < paramaeterRows.length; i++) {
+                paramaeterRows[i].removeClassName("highlight");
+            }
+
+            info.addClassName("highlight");
+        }
     }
 
     /**
@@ -272,11 +287,7 @@ public class MainView extends HorizontalLayout {
      * @return false if the parameter is used
      */
     private boolean parameterUsed(String parameter) {
-        if(usedParameters.contains(parameter)) {
-            return true;
-        } else {
-            return false;
-        }
+        return gameState.hasUsedParameter(parameter);
     }
 
     /**
@@ -329,32 +340,32 @@ public class MainView extends HorizontalLayout {
                 strSummary.setText("STR: " + servant.getSTR());
                 endStrSummary.setText("STR: " + servant.getSTR());
                 strImageSummary.setSrc("images/servants/" + servant.getImage());
-                usedParameters.add("STR");
+                gameState.useParameter("STR");
             } else if(parameter.equals("AGL")) {
                 aglSummary.setText("AGL: " + servant.getAGL());
                 endAglSummary.setText("AGL: " + servant.getAGL());
                 aglImageSummary.setSrc("images/servants/" + servant.getImage());
-                usedParameters.add("AGL");
+                gameState.useParameter("AGL");
             } else if(parameter.equals("LUK")) {
                 lukSummary.setText("LUK: " + servant.getLUK());
                 endLukSummary.setText("LUK: " + servant.getLUK());
                 lukImageSummary.setSrc("images/servants/" + servant.getImage());
-                usedParameters.add("LUK");
+                gameState.useParameter("LUK");
             } else if(parameter.equals("END")) {
                 endSummary.setText("END: " + servant.getEND());
                 endEndSummary.setText("END: " + servant.getEND());
                 endImageSummary.setSrc("images/servants/" + servant.getImage());
-                usedParameters.add("END");
+                gameState.useParameter("END");
             } else if(parameter.equals("MP")) {
                 mpSummary.setText("MP: " + servant.getMP());
                 endMpSummary.setText("MP: " + servant.getMP());
                 mpImageSummary.setSrc("images/servants/" + servant.getImage());
-                usedParameters.add("MP");
+                gameState.useParameter("MP");
             } else if(parameter.equals("NP")) {
                 npSummary.setText("NP: " + servant.getNP());
                 endNpSummary.setText("NP: " + servant.getNP());
                 npImageSummary.setSrc("images/servants/" + servant.getImage());
-                usedParameters.add("NP");
+                gameState.useParameter("NP");
             }
 
             parameterClicked = true;
@@ -364,34 +375,81 @@ public class MainView extends HorizontalLayout {
     }
 
     /**
+     * Starts the shuffling animation
+     */
+    private void startShuffling() {
+        String[] images = servants.stream().filter(s -> !gameState.hasUsedServant(getServantID(s.getImage())))
+                        .map(s -> "/images/servants/" + s.getImage())
+                        .toArray(String[]::new);
+
+        String[] names = servants.stream().filter(s -> !gameState.hasUsedServant(getServantID(s.getImage())))
+                .map(Parameter::getName)
+                .toArray(String[]::new);
+
+        servantImage.getElement().executeJs("""
+                const images = $0;
+                const names = $1;
+                const nameElement = $2;
+                
+                const entries = images.map((image, index) => ({
+                    image,
+                    name: names[index]
+                }));
+                
+                for(let i = images.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [entries[i], entries[j]] = [entries[j], entries[i]];
+                }
+                
+                let index = 0;
+                clearInterval(this.shuffleTimer);
+                
+                this.shuffleTimer = setInterval(() => {
+                    this.src = entries[index].image;
+                    nameElement.textContent = entries[index].name;
+                    index = (index + 1) % entries.length;
+                }, 50);
+                """, (Object) images, (Object) names, name.getElement());
+    }
+
+    /**
+     * Gets the stopped images data
+     * @param imageUrl is the url of the image
+     */
+    private void useStoppedimage(String imageUrl) {
+        String imageName = imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
+        servant = servants.stream().filter(s -> s.getImage().equals(imageName)).findFirst().orElseThrow();
+    }
+
+    /**
      * Ends the game
      */
     private void endGame() {
-        if(servantCount == 6) {
+        if(gameState.isFinished()) {
             finalScore.setText("Final Score: " + (int) scoreLogic.calculateScore());
-            theorereticalBestScore.setText("Best Possible Score: " + (int) theoreticalScoreLogic.calculateTheoreticalHighScore(selectedServants));
+            theorereticalBestScore.setText("Best Possible Score: " + (int) theoreticalScoreLogic.calculateTheoreticalHighScore(gameState.getSelectedServants()));
 
             String[] bestAssignment = theoreticalScoreLogic.getBestAssignment();
 
             for(int i = 0; i < bestAssignment.length; i++) {
                 if(bestAssignment[i].equals("STR")) {
-                    bestStrSummary.setText("STR: " + selectedServants.get(i).getParameter("STR"));
-                    bestStrImageSummary.setSrc("images/servants/" + selectedServants.get(i).getImage());
+                    bestStrSummary.setText("STR: " + gameState.getSelectedServants().get(i).getParameter("STR"));
+                    bestStrImageSummary.setSrc("images/servants/" + gameState.getSelectedServants().get(i).getImage());
                 } else if(bestAssignment[i].equals("AGL")) {
-                    bestAglSummary.setText("AGL: " + selectedServants.get(i).getParameter("AGL"));
-                    bestAglImageSummary.setSrc("images/servants/" + selectedServants.get(i).getImage());
+                    bestAglSummary.setText("AGL: " + gameState.getSelectedServants().get(i).getParameter("AGL"));
+                    bestAglImageSummary.setSrc("images/servants/" + gameState.getSelectedServants().get(i).getImage());
                 } else if(bestAssignment[i].equals("LUK")) {
-                    bestLukSummary.setText("LUK: " + selectedServants.get(i).getParameter("LUK"));
-                    bestLukImageSummary.setSrc("images/servants/" + selectedServants.get(i).getImage());
+                    bestLukSummary.setText("LUK: " + gameState.getSelectedServants().get(i).getParameter("LUK"));
+                    bestLukImageSummary.setSrc("images/servants/" + gameState.getSelectedServants().get(i).getImage());
                 } else if(bestAssignment[i].equals("END")) {
-                    bestEndSummary.setText("END: " + selectedServants.get(i).getParameter("END"));
-                    bestEndImageSummary.setSrc("images/servants/" + selectedServants.get(i).getImage());
+                    bestEndSummary.setText("END: " + gameState.getSelectedServants().get(i).getParameter("END"));
+                    bestEndImageSummary.setSrc("images/servants/" + gameState.getSelectedServants().get(i).getImage());
                 } else if(bestAssignment[i].equals("MP")) {
-                    bestMpSummary.setText("MP: " + selectedServants.get(i).getParameter("MP"));
-                    bestMpImageSummary.setSrc("images/servants/" + selectedServants.get(i).getImage());
+                    bestMpSummary.setText("MP: " + gameState.getSelectedServants().get(i).getParameter("MP"));
+                    bestMpImageSummary.setSrc("images/servants/" + gameState.getSelectedServants().get(i).getImage());
                 } else if(bestAssignment[i].equals("NP")) {
-                    bestNpSummary.setText("NP: " + selectedServants.get(i).getParameter("NP"));
-                    bestNpImageSummary.setSrc("images/servants/" + selectedServants.get(i).getImage());
+                    bestNpSummary.setText("NP: " + gameState.getSelectedServants().get(i).getParameter("NP"));
+                    bestNpImageSummary.setSrc("images/servants/" + gameState.getSelectedServants().get(i).getImage());
                 }
             }
 
@@ -399,15 +457,6 @@ public class MainView extends HorizontalLayout {
 
             endScreen.open();
         }
-    }
-
-    /**
-     * Resets the game
-     */
-    private void resetGame() {
-        usedServants.clear();
-        selectedServants.clear();
-        usedParameters.clear();
     }
 
     // Display
@@ -420,25 +469,12 @@ public class MainView extends HorizontalLayout {
         number = new Random();
         servant = servants.get(number.nextInt(servants.size()));
 
-        // Shuffle servants
-        UI.getCurrent().setPollInterval(50);
-
-        UI.getCurrent().addPollListener(event -> {
-            try {
-                if(isShuffling) {
-                    getRandomServant();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
         // Display servant
         name = new Span(servant.getName());
-        name.getStyle().set("font-size", "20px"); // Original size is 25px
+        name.getStyle().set("font-size", "23px");
 
         shuffling = new Span("Click to stop");
-        shuffling.getStyle().set("font-size", "15px").set("opacity", "0.5");
+        shuffling.getStyle().set("font-size", "16px").set("opacity", "0.8").set("margin-top", "-5px");
 
         servantImage = new Image("images/servants/" + servant.getImage(), servant.getName());
         servantImage.setWidth("350px");
@@ -495,77 +531,33 @@ public class MainView extends HorizontalLayout {
 
         // Display score
         scoreDisplay = new Span("Score " + scoreLogic.getScore());
-        scoreDisplay.getStyle().set("font-size", "15px").set("text-align", "center"); // Original size is 20px
+        scoreDisplay.getStyle().set("font-size", "18px").set("text-align", "center");
 
         multiplierDisplay = new Span("Multiplier " + scoreLogic.getMultiplier() + "x");
-        multiplierDisplay.getStyle().set("font-size", "15px").set("text-align", "center"); // Original size is 20px
+        multiplierDisplay.getStyle().set("font-size", "18px").set("text-align", "center");
 
         // Display parameter summary
         HorizontalLayout parameterDisplay1 = new HorizontalLayout(strSummary, aglSummary, lukSummary);
         HorizontalLayout parameterDisplay2 = new HorizontalLayout(endSummary, mpSummary, npSummary);
 
+        parameterDisplay1.setSpacing(false);
+        parameterDisplay2.setSpacing(false);
+
         // Display parameter summary layout
         VerticalLayout parameterDisplay = new VerticalLayout(parameterDisplay1, parameterDisplay2);
         parameterDisplay.getStyle().set("border", "1px solid white").set("border-radius", "10px").set("padding", "5px");
-        parameterDisplay.setWidth("100%");
-        parameterDisplay.setMaxWidth("375px");
+        parameterDisplay.setMaxWidth("325px");
         parameterDisplay.setAlignItems(FlexComponent.Alignment.CENTER);
 
-        // Shuffle to next servant
-        parameterClicked = true;
-
-        servantImage.addClickListener(event -> {
-           try {
-               if(parameterClicked) {
-                   // Stop shuffling
-                   if(isShuffling) {
-                       UI.getCurrent().setPollInterval(-1);
-
-                       number = new Random();
-
-                       while(usedServants.contains(getServantID(servant.getImage()))) {
-                           servant = servants.get(number.nextInt(servants.size()));
-                       }
-
-                       name.setText(servant.getName());
-                       shuffling.setText("Click to shuffle");
-                       servantImage.setSrc("images/servants/" + servant.getImage());
-
-                       usedServants.add(getServantID(servant.getImage()));
-                       selectedServants.add(servant);
-                       servantCount++;
-
-                       isShuffling = !isShuffling;
-                       parameterClicked = !parameterClicked;
-                   // Continue shuffling
-                   } else {
-                       UI.getCurrent().setPollInterval(50);
-                       shuffling.setText("Click to stop");
-                       isShuffling = !isShuffling;
-                   }
-               }
-           } catch (Exception e) {
-               e.printStackTrace();
-           }
-        });
-
-        // Modify scores
-        strImage.addClickListener(event -> parameterClicked("STR"));
-        aglImage.addClickListener(event -> parameterClicked("AGL"));
-        lukImage.addClickListener(event -> parameterClicked("LUK"));
-        endImage.addClickListener(event -> parameterClicked("END"));
-        mpImage.addClickListener(event -> parameterClicked("MP"));
-        npImage.addClickListener(event -> parameterClicked("NP"));
-
-        // Create parameter layouts
+        // Create servant layout
         VerticalLayout info = new VerticalLayout(name, shuffling, servantImage);
-        info.getStyle().set("border", "1px solid white").set("border-radius", "10px").set("padding", "5px");
+        info.getStyle().set("border", "1px solid white").set("border-radius", "10px").set("padding", "3px");
         info.setAlignItems(FlexComponent.Alignment.CENTER);
-        info.setWidthFull();
         info.setMaxWidth("500px");
         info.setSpacing(false);
         info.setPadding(false);
 
+        // Create parameter layouts
         HorizontalLayout strStat = createParameterLayout(str, strImage);
         HorizontalLayout aglStat = createParameterLayout(agl, aglImage);
         HorizontalLayout lukStat = createParameterLayout(luk, lukImage);
@@ -573,27 +565,115 @@ public class MainView extends HorizontalLayout {
         HorizontalLayout mpStat = createParameterLayout(mp, mpImage);
         HorizontalLayout npStat = createParameterLayout(np, npImage);
 
+        HorizontalLayout[] parameterRows = {strStat, aglStat, lukStat, endStat, mpStat, npStat};
+
+        // Shuffle to next servant
+        parameterClicked = true;
+        info.addClassName("highlight");
+
+        info.addClickListener(event -> {
+            try {
+                if(parameterClicked) {
+                    // Stop shuffling
+                    if(isShuffling) {
+                        servantImage.getElement().executeJs("""
+                                clearInterval(this.shuffleTimer);
+                                return this.getAttribute("src");
+                                """)
+                                .then(String.class, imageUrl -> {
+                                    useStoppedimage(imageUrl);
+
+                                    info.removeClassName("highlight");
+                                    if(!parameterUsed("STR")) { strStat.addClassName("highlight"); }
+                                    if(!parameterUsed("AGL")) { aglStat.addClassName("highlight"); }
+                                    if(!parameterUsed("LUK")) { lukStat.addClassName("highlight"); }
+                                    if(!parameterUsed("END")) { endStat.addClassName("highlight"); }
+                                    if(!parameterUsed("MP")) { mpStat.addClassName("highlight"); }
+                                    if(!parameterUsed("NP")) { npStat.addClassName("highlight"); }
+
+                                    number = new Random();
+
+                                    while(gameState.hasUsedServant(getServantID(servant.getImage()))) {
+                                        servant = servants.get(number.nextInt(servants.size()));
+                                    }
+
+                                    name.setText(servant.getName());
+                                    shuffling.setText("Click a parameter");
+                                    servantImage.setSrc("images/servants/" + servant.getImage());
+
+                                    gameState.recordServant(servant, getServantID(servant.getImage()));
+
+                                    isShuffling = !isShuffling;
+                                    parameterClicked = !parameterClicked;
+                                });
+                        // Continue shuffling
+                    } else {
+                        getRandomServant();
+                        startShuffling();
+
+                        info.addClassName("highlight");
+                        strStat.removeClassName("highlight");
+                        aglStat.removeClassName("highlight");
+                        lukStat.removeClassName("highlight");
+                        endStat.removeClassName("highlight");
+                        mpStat.removeClassName("highlight");
+                        npStat.removeClassName("highlight");
+
+                        shuffling.setText("Click to stop");
+                        isShuffling = !isShuffling;
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        // Add parameter click listeners
+        strStat.addClickListener(event -> {clickableParameters("STR", info, parameterRows);});
+
+        aglStat.addClickListener(event -> {clickableParameters("AGL", info, parameterRows);});
+
+        lukStat.addClickListener(event -> {clickableParameters("LUK", info, parameterRows);});
+
+        endStat.addClickListener(event -> {clickableParameters("END", info, parameterRows);});
+
+        mpStat.addClickListener(event -> {clickableParameters("MP", info, parameterRows);});
+
+        npStat.addClickListener(event -> {clickableParameters("NP", info, parameterRows);});
+
         HorizontalLayout total = new HorizontalLayout(parameterDisplay, scoreDisplay, multiplierDisplay);
-        total.setWidth("100%");
         total.setMaxWidth("500px");
+        total.setWidthFull();
         total.setAlignItems(FlexComponent.Alignment.CENTER);
+        total.getStyle().set("column-gap", "5px");
 
         VerticalLayout stats = new VerticalLayout(strStat, aglStat, lukStat, endStat, mpStat, npStat, total);
         stats.setAlignItems(FlexComponent.Alignment.CENTER);
-        stats.setWidthFull();
+        stats.setSpacing(false);
+        stats.setWidth("500px");
+        stats.getStyle().set("row-gap", "18px");
+
+        for (int i = 0; i < parameterRows.length; i++) {
+            parameterRows[i].setWidthFull();
+        }
 
         // Create page layout
         HorizontalLayout page = new HorizontalLayout(info, stats);
         page.setAlignItems(FlexComponent.Alignment.CENTER);
         page.addClassName("game-page");
+        page.setSpacing(false);
+        page.getStyle().set("column-gap", "4px");
 
         add(page);
+
+        // Start shuffling
+        startShuffling();
 
         // Display end screen
         endScreen = new Dialog();
 
         endScreen.getElement().getStyle().set("--vaadin-dialog-overlay-width", "100%");
-        endScreen.setWidth("900px");
+        endScreen.setWidth("865px");
         endScreen.setCloseOnEsc(false);
         endScreen.setCloseOnOutsideClick(false);
         endScreen.addClassName("game-dialog");
@@ -613,7 +693,6 @@ public class MainView extends HorizontalLayout {
         HorizontalLayout endSummaryDisplay = new HorizontalLayout(endStrDisplay, endAglDisplay, endLukDisplay, endEndDisplay, endMpDisplay, endNpDisplay);
 
         endSummaryDisplay.setAlignItems(FlexComponent.Alignment.CENTER);
-        endSummaryDisplay.setSpacing(false);
         endSummaryDisplay.setSpacing(false);
 
         VerticalLayout endScoreSummary = new VerticalLayout(finalScore, endSummaryDisplay);
@@ -638,7 +717,6 @@ public class MainView extends HorizontalLayout {
 
         bestSummaryDisplay.setAlignItems(FlexComponent.Alignment.CENTER);
         bestSummaryDisplay.setSpacing(false);
-        bestSummaryDisplay.setSpacing(false);
 
         VerticalLayout bestScoreSummary = new VerticalLayout(theorereticalBestScore, bestSummaryDisplay);
         bestScoreSummary.getStyle().set("border", "1px solid white").set("border-radius", "10px").set("padding", "5px");
@@ -651,26 +729,28 @@ public class MainView extends HorizontalLayout {
 
         restart.addClickListener(event -> {
             UI.getCurrent().refreshCurrentRoute(false);
-            resetGame();
+            gameState.reset();
             endScreen.close();
         });
 
-        restart.getStyle().set("font-size", "30px").set("background-color", "#1a1a1a");
-        restart.setWidth("400px");
+        restart.getStyle().set("font-size", "30px").set("background-color", "#141414").set("border", "1px solid white");
+        restart.setWidth("380px");
         restart.setHeight("55px");
+        restart.addClassName("highlight");
 
         // Display home button
         Button home = new Button("Home");
 
         home.addClickListener(event -> {
             UI.getCurrent().navigate("");
-            resetGame();
+            gameState.reset();
             endScreen.close();
         });
 
-        home.getStyle().set("font-size", "30px").set("background-color", "#1a1a1a");
-        home.setWidth("400px");
+        home.getStyle().set("font-size", "30px").set("background-color", "#141414").set("border", "1px solid white");
+        home.setWidth("380px");
         home.setHeight("55px");
+        home.addClassName("highlight");
 
         // Create end screen layout
         HorizontalLayout navigate = new HorizontalLayout(restart, home);

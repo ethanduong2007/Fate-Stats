@@ -16,6 +16,7 @@ import com.vaadin.flow.component.icon.SvgIcon;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.Layout;
@@ -44,7 +45,8 @@ public class MainLayout extends AppLayout implements AfterNavigationObserver {
 
     private void addHeaderContent() {
         viewTitle = new H1("Fate/Stats");
-        viewTitle.getStyle().set("font-size", "30px").set("font-weight", "bold").set("margin", "0 0 0 25px");
+        viewTitle.getStyle().set("font-size", "35px").set("font-weight", "bold").set("margin", "0 0 0 25px").set("cursor", "pointer");
+        viewTitle.getElement().addEventListener("click", event -> UI.getCurrent().navigate(""));
         addToNavbar(true, viewTitle);
     }
 
