@@ -1,38 +1,53 @@
 # Fate/Stats
 
-Fate/Stats is a Java-based web application inspired by the Fate franchise. Players are given a random Servant and evaluate their stats by assigning ranks to each parameter. The application calculates a score based on the player's selections.
+Fate/Stats is a browser-based character-ranking game inspired by the *Fate* franchise. Each round presents a randomly selected Servant. Rank the Servant across several parameters, build a score with the game's scoring and multiplier system, and compare your result with the best possible score.
 
-# Features
-- Random Servant generation
-- Servant and parameter images
+**Try it:** [Play Fate/Stats](https://fate-stats.onrender.com/)
+
+## Features
+
+- Random Servant selection from a roster of 200+ characters
+- Servant portraits and parameter illustrations
 - Interactive parameter ranking
-- Score and multiplier system
-- High score tracker
-- Best possible score tracker
-- End of game summary
-- Responsive web-based interface
+- Score calculation with a multiplier system
+- High-score and best-possible-score tracking
+- End-of-game results summary
+- Responsive layouts for desktop and smaller screens
 
-# Technologies
-- Java
+## Built with
+
+- Java 25+
 - Vaadin
 - Maven
-- HTML/CSS
+- HTML and CSS
 
-# How to Run
-Prerequisites
+## Run locally
+
+### Requirements
+
 - Java 25 or later
-- Maven
+- Maven, or the included Maven Wrapper
 
-# Running the Application
+### Start the app
 
-Clone the repository and run:
+Clone this repository, open a terminal in the project directory, and run:
 
+```bash
 ./mvnw
+```
 
-The application will start locally and can be accessed through the provided localhost address.
+Then open the local address printed in the terminal (typically `http://localhost:8080`).
 
-# Project Status
-This project is currently under development. Additional features and UI improvements may be added in the future.
+On Windows, use `mvnw.cmd` instead:
 
-# License
-This project is currently unlicensed.
+```powershell
+./mvnw.cmd
+```
+
+## Project status
+
+Fate/Stats is an ongoing personal project. Features and presentation may change as development continues.
+
+## License
+
+No license has been specified. All rights reserved unless the repository owner states otherwise.
