@@ -37,40 +37,10 @@ public class Score {
      * @param rank is the rank of the parameter
      */
     public void addScore(String rank) {
-        if(rank.equals("A+++")) {
-            score += 200;
-        } else if(rank.equals("A++")) {
-            score += 150;
-        } else if(rank.equals("A+")) {
-            score += 100;
-        } else if(rank.equals("A")) {
-            score += 50;
-        } else if(rank.equals("A-")) {
-            score += 45;
-        } else if(rank.equals("B+++")) {
-            score += 160;
-        } else if(rank.equals("B++") || rank.equals("C+++")) {
-            score += 120;
-        } else if(rank.equals("B+") || rank.equals("D+++")) {
-            score += 80;
-        } else if(rank.equals("B") || rank.equals("D+") || rank.equals("E+++")) {
-            score += 40;
-        } else if(rank.equals("C++")) {
-            score += 90;
-        } else if(rank.equals("C+") || rank.equals("D++")) {
-            score += 60;
-        } else if(rank.equals("C") || rank.equals("E++")) {
-            score += 30;
-        } else if(rank.equals("D") || rank.equals("E+")) {
-            score += 20;
-        } else if(rank.equals("E")) {
-            score += 10;
-        } else if(rank.equals("E-")) {
-            score += 5;
-        } else if(rank.equals("EX")) {
+        if(rank.equals("EX")) {
             multiplier += 0.5;
         } else {
-            score += 0;
+            score += ScoringUtils.SCORE_VALUES.getOrDefault(rank, 0);
         }
     }
 

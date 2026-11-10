@@ -302,3 +302,56 @@ Arjuna (Alter), A, A, C, A+, A++, EX, 247.2.png
 Aśvatthāman, B, A++, A, A, B, A+, 248.png
 Asclepius, D, B, D, D, A, A+, 249.png
 Demon King Nobunaga, B, C, B, C, B, A-, 250.png
+Mori Nagayoshi, B, D, D, C, E, C, 251.png
+Nagao Kagetora, C, A, C+, C, D+, B, 252.png
+Leonardo da Vinci, D, B, A+, D, A, B, 253.png
+Leonardo da Vinci, D, B, A+, D, A, B, 253.1.png
+Jason, C, B+, A+, B, D, A, 254.png
+Paris, D, B, A, C, B+, A, 255.png
+Gareth, C, A, D, B, D, C, 256.png
+Bartholomew Roberts, C, C, B, D+, D, A, 257.png
+Bartholomew Roberts, C, C, B, D+, D, A, 257.1.png
+Chen Gong, C, B, C, D, B, C, 258.png
+Charlotte Corday, E, D, B+, E, E, D, 259.png
+Salome, B, B, C, B, D, B, 260.png
+Miyamoto Musashi (Berserker), A+, B, D, B, C, D, 261.png
+Osakabehime (Archer), D, B, A, E, A, EX, 262.png
+Carmilla (Rider), B, A++, B, E, D, B, 263.png
+Katsushika Hokusai (Saber), C, B, B-, C, C-, B, 264.png
+Altria Pendragon (Ruler), C, B, B, A+, A, A+, 265.png
+Mysterious Alter Ego Λ, C, A, A, E, B, B+, 266.png
+Okita J. Souji, D, A+, C, E, D, C, 267.png
+Space Ishtar, B, B, C+, EX, EX, EX, 268.png
+Calamity Jane, C, B, A, A, D, D, 269.png
+Astolfo (Saber), C+, A, A++, C, B, B, 270.png
+Florence Nightingale (Santa), D+, B+, A+, B+, D+, B, 271.png
+Super Orion, A, B+, A, A, C, EX, 272.png
+Mandricardo, C, A, B, B, C, A, 273.png
+Europa, E, D, A+, E, B, A, 274.png
+Yang Guifei, D, B, D, C, A, B+, 275.png
+Sei Shounagon, E, B, A, D, C, D++, 276.png
+Odysseus, C, D, EX, A+, B+, B, 277.png
+Dioscuri, A, B, C, A++, C, B, 278.png
+Caenis, A, A, B, B+, D, C, 279.png
+Romulus=Quirinus, A, A, EX, C, B++, A, 280.png
+Voyager, E, A+, A, C, B, B, 281.png
+Kijyo Koyo, B, D, D, B, B, C, 282.png
+Utsumi Erice, C, B, E, C, C, B, 283.png
+Altria Caster, B, B, B, D, A, A++, 284.png
+Sessyoin Kiara (Moon Cancer), C, C, B, A+, A+, A+, 285.png
+Illyasviel von Einzbern (Archer), C, B, C-, C, B, A, 286.png
+Brynhild (Berserker), C, A, EX, C, B, B, 287.png
+Yu Mei-ren (Lancer), B, A, C, D, A, C, 288.png
+Abigail Williams (Summer), C, B, B, B, A, A, 289.png
+Tomoe Gozen (Saber), B, B, A, A, B, B, 290.png
+Murasaki Shikibu (Rider), E, D, A+, C, B, C, 291.png
+Himiko, B++, C, B, B, A, B, 292.png
+Saito Hajime, B, B+, A, C, E, C, 293.png
+Oda Nobukatsu, D, C, E, D, E, D, 294.png
+Van Gogh, E, C, D, B, A, A+, 295.png
+Nemo, C, C, A, B, A, B, 296.png
+Ashiya Douman, C, E, B, D, EX, B, 297.png
+Ashiya Douman, C, E, B, D, EX, B, 297.1.png
+Watanabe-no-Tsuna, B+, A+, B, C, C, B, 298.png
+Ibuki-Douji, A+, C, D, C, EX, A+, 299.png
+Vritra, A, A, D, C, A, EX, 300.png

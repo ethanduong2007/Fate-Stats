@@ -14,6 +14,8 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.button.Button;
 
+import java.util.Map;
+
 @PageTitle("Fate/Stats")
 @Route("")
 public class HomeView extends VerticalLayout {
@@ -26,11 +28,24 @@ public class HomeView extends VerticalLayout {
     private Span creator;
     private Span highScore;
 
-    private Span createScoringSpan(String score) {
-        Span span = new Span(score + "+++: +200\n" + score + "++: +150\n" + score + "+: +100\n" + score + ": +50");
-        span.getStyle().set("font-size", "20px").set("text-align", "center").set("white-space", "pre-line");
-        span.setWidth("175px");
-        return span;
+    private Span createScoringSpan(String rank) {
+        StringBuilder scoreBuilder = new StringBuilder();
+
+        String[] suffixes = {"+++", "++", "+", "", "-"};
+
+        for (String suffix : suffixes) {
+            String currentRank = rank + suffix;
+
+            if(ScoringUtils.SCORE_VALUES.containsKey(currentRank)) {
+                scoreBuilder.append(currentRank).append(": ").append(ScoringUtils.SCORE_VALUES.get(currentRank)).append("\n");
+            }
+        }
+
+        Span score = new Span(scoreBuilder.toString());
+        score.getStyle().set("font-size", "20px").set("text-align", "center").set("white-space", "pre-line");
+        score.setWidth("175px");
+
+        return score;
     }
 
     public HomeView() {
