@@ -6,7 +6,7 @@ Fate/Stats is a browser-based character-ranking game inspired by the *Fate* fran
 
 ## Features
 
-- Random Servant selection from a roster of 200+ characters
+- Random Servant selection from a roster of 300+ characters
 - Servant portraits and parameter illustrations
 - Interactive parameter ranking
 - Score calculation with a multiplier system
